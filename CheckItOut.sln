@@ -7,6 +7,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.Domain"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.UnitTests", "CheckItOut.Payments.UnitTests\CheckItOut.Payments.UnitTests.csproj", "{44B0FFBD-0EDB-4F30-8EB1-8E58645F1C5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.Infrastructure", "CheckItOut.Payments.Infrastructure\CheckItOut.Payments.Infrastructure.csproj", "{46B0EE55-44D8-4749-AA7D-BF2FC9A00EEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.Application", "CheckItOut.Payments.Application\CheckItOut.Payments.Application.csproj", "{A16D5F72-BEBB-4CF9-91CC-5C1E0F804FF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.Api", "CheckItOut.Payments.Api\CheckItOut.Payments.Api.csproj", "{21183FF7-AE5A-424E-866E-17D91436B3D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.IntegrationTests", "CheckItOut.Payments.IntegrationTests\CheckItOut.Payments.IntegrationTests.csproj", "{08C4C85B-9CE1-456A-A189-3297295AB02F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C0501DF-1713-4688-9DF6-34007C444E05}"
+	ProjectSection(SolutionItems) = preProject
+		Challenge.txt = Challenge.txt
+		ToDo.txt = ToDo.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +35,22 @@ Global
 		{44B0FFBD-0EDB-4F30-8EB1-8E58645F1C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44B0FFBD-0EDB-4F30-8EB1-8E58645F1C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44B0FFBD-0EDB-4F30-8EB1-8E58645F1C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46B0EE55-44D8-4749-AA7D-BF2FC9A00EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46B0EE55-44D8-4749-AA7D-BF2FC9A00EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46B0EE55-44D8-4749-AA7D-BF2FC9A00EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46B0EE55-44D8-4749-AA7D-BF2FC9A00EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A16D5F72-BEBB-4CF9-91CC-5C1E0F804FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A16D5F72-BEBB-4CF9-91CC-5C1E0F804FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A16D5F72-BEBB-4CF9-91CC-5C1E0F804FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A16D5F72-BEBB-4CF9-91CC-5C1E0F804FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21183FF7-AE5A-424E-866E-17D91436B3D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21183FF7-AE5A-424E-866E-17D91436B3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21183FF7-AE5A-424E-866E-17D91436B3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21183FF7-AE5A-424E-866E-17D91436B3D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C4C85B-9CE1-456A-A189-3297295AB02F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C4C85B-9CE1-456A-A189-3297295AB02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C4C85B-9CE1-456A-A189-3297295AB02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C4C85B-9CE1-456A-A189-3297295AB02F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

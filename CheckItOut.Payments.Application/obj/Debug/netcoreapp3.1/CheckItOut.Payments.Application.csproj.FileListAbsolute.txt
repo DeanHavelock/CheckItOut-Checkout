@@ -1,0 +1,12 @@
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Application.deps.json
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Application.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Application.pdb
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.pdb
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Application.csprojAssemblyReference.cache
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Application.AssemblyInfoInputs.cache
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Application.AssemblyInfo.cs
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Application.csproj.CoreCompileInputs.cache
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Application.csproj.CopyComplete
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Application.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Application\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Application.pdb

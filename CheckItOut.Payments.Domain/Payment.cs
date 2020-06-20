@@ -4,9 +4,8 @@ namespace CheckItOut.Payments.Domain
 {
     public class Payment
     {
-        public void MakePayment()
-        {
+        public Guid Id { get; set; }
 
-        }
+        public decimal Amount { get; set; }
     }
 }

@@ -1,0 +1,5 @@
+
+Setup Dependency Injection in Api
+Add Authentication (between Ui -> Api, integration tests -> api)
+Add InMemory database / EF code first
+Add Swagger to Api

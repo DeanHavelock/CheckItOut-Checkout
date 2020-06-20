@@ -1,0 +1,12 @@
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.deps.json
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.pdb
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.csprojAssemblyReference.cache
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.AssemblyInfo.cs
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.pdb
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.pdb
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.csproj.CopyComplete
