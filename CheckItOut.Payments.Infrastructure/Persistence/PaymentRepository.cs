@@ -1,22 +1,28 @@
 ﻿using CheckItOut.Payments.Domain;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using System.Threading.Tasks;
 
 namespace CheckItOut.Payments.Infrastructure.Persistence.InMemory
 {
     public class PaymentRepository : IPaymentRepository
     {
-        public Task Add(Payment payment)
+
+        private CheckItOutContext _context;
+
+        public PaymentRepository(CheckItOutContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task Save()
+        public async Task Add(Payment payment)
         {
-            throw new NotImplementedException();
+            await _context.AddAsync(payment);
+        }
+
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

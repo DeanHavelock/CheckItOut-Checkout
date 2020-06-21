@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="3.1.5" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
@@ -15,6 +16,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CheckItOut.Payments.Api\CheckItOut.Payments.Api.csproj" />
+    <ProjectReference Include="..\CheckItOut.Payments.Application\CheckItOut.Payments.Application.csproj" />
+    <ProjectReference Include="..\CheckItOut.Payments.Domain\CheckItOut.Payments.Domain.csproj" />
+    <ProjectReference Include="..\CheckItOut.Payments.Infrastructure\CheckItOut.Payments.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,6 +11,17 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CheckItOut.Payments.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Paymen" +
+    "ts.Api", "CheckItOut.Payments.Api.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CheckItOut.Payments.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken" +
+    "=null", "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Paymen" +
+    "ts.Application", "CheckItOut.Payments.Application.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CheckItOut.Payments.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" +
+    "", "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Paymen" +
+    "ts.Domain", "CheckItOut.Payments.Domain.csproj", "0")]
+[assembly: Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute("CheckItOut.Payments.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyTo" +
+    "ken=null", "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Paymen" +
+    "ts.Infrastructure", "CheckItOut.Payments.Infrastructure.csproj", "0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("CheckItOut.Payments.IntegrationTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

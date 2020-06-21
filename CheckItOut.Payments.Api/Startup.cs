@@ -6,6 +6,7 @@ using CheckItOut.Payments.Application.CommandHandlers;
 using CheckItOut.Payments.Domain;
 using CheckItOut.Payments.Domain.Interfaces;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
+using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using CheckItOut.Payments.Infrastructure.Persistence.InMemory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +33,12 @@ namespace CheckItOut.Payments.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<CheckItOutContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CheckItOut")));
+            
+            services.AddDbContext<CheckItOutContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("CheckItOut"));
+            });
+
 
             services.AddTransient<IPaymentsCommandHandler, PaymentsCommandHandler>();
             services.AddTransient<IPaymentRepository, PaymentRepository>();

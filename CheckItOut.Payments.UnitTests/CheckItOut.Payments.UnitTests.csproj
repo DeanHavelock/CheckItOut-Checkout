@@ -18,6 +18,7 @@
     <ProjectReference Include="..\CheckItOut.Payments.Api\CheckItOut.Payments.Api.csproj" />
     <ProjectReference Include="..\CheckItOut.Payments.Application\CheckItOut.Payments.Application.csproj" />
     <ProjectReference Include="..\CheckItOut.Payments.Domain\CheckItOut.Payments.Domain.csproj" />
+    <ProjectReference Include="..\CheckItOut.Payments.Infrastructure\CheckItOut.Payments.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -52,6 +52,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.5, )"
@@ -242,6 +248,17 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -290,6 +307,15 @@
             "projectReferences": {
               "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Api\\CheckItOut.Payments.Api.csproj": {
                 "projectPath": "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Api\\CheckItOut.Payments.Api.csproj"
+              },
+              "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Application\\CheckItOut.Payments.Application.csproj": {
+                "projectPath": "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Application\\CheckItOut.Payments.Application.csproj"
+              },
+              "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Domain\\CheckItOut.Payments.Domain.csproj": {
+                "projectPath": "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Domain\\CheckItOut.Payments.Domain.csproj"
+              },
+              "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Infrastructure\\CheckItOut.Payments.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Infrastructure\\CheckItOut.Payments.Infrastructure.csproj"
               }
             }
           }
@@ -303,6 +329,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.5.0, )"
