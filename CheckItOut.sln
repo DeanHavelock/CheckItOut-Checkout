@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.Domain", "CheckItOut.Payments.Domain\CheckItOut.Payments.Domain.csproj", "{AE98DB56-A6C9-41B9-8136-A23CFB5CA7E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckItOut.Payments.Domain", "CheckItOut.Payments.Domain\CheckItOut.Payments.Domain.csproj", "{AE98DB56-A6C9-41B9-8136-A23CFB5CA7E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.UnitTests", "CheckItOut.Payments.UnitTests\CheckItOut.Payments.UnitTests.csproj", "{44B0FFBD-0EDB-4F30-8EB1-8E58645F1C5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckItOut.Payments.UnitTests", "CheckItOut.Payments.UnitTests\CheckItOut.Payments.UnitTests.csproj", "{44B0FFBD-0EDB-4F30-8EB1-8E58645F1C5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.Infrastructure", "CheckItOut.Payments.Infrastructure\CheckItOut.Payments.Infrastructure.csproj", "{46B0EE55-44D8-4749-AA7D-BF2FC9A00EEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckItOut.Payments.Infrastructure", "CheckItOut.Payments.Infrastructure\CheckItOut.Payments.Infrastructure.csproj", "{46B0EE55-44D8-4749-AA7D-BF2FC9A00EEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.Application", "CheckItOut.Payments.Application\CheckItOut.Payments.Application.csproj", "{A16D5F72-BEBB-4CF9-91CC-5C1E0F804FF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckItOut.Payments.Application", "CheckItOut.Payments.Application\CheckItOut.Payments.Application.csproj", "{A16D5F72-BEBB-4CF9-91CC-5C1E0F804FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.Api", "CheckItOut.Payments.Api\CheckItOut.Payments.Api.csproj", "{21183FF7-AE5A-424E-866E-17D91436B3D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckItOut.Payments.Api", "CheckItOut.Payments.Api\CheckItOut.Payments.Api.csproj", "{21183FF7-AE5A-424E-866E-17D91436B3D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Payments.IntegrationTests", "CheckItOut.Payments.IntegrationTests\CheckItOut.Payments.IntegrationTests.csproj", "{08C4C85B-9CE1-456A-A189-3297295AB02F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckItOut.Payments.IntegrationTests", "CheckItOut.Payments.IntegrationTests\CheckItOut.Payments.IntegrationTests.csproj", "{08C4C85B-9CE1-456A-A189-3297295AB02F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C0501DF-1713-4688-9DF6-34007C444E05}"
 	ProjectSection(SolutionItems) = preProject
 		Challenge.txt = Challenge.txt
 		ToDo.txt = ToDo.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckItOut.Ui.Web", "CheckItOut.Ui.Web\CheckItOut.Ui.Web.csproj", "{21FDE121-64E9-42D2-BBF5-85DFE08FA95D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{08C4C85B-9CE1-456A-A189-3297295AB02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08C4C85B-9CE1-456A-A189-3297295AB02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08C4C85B-9CE1-456A-A189-3297295AB02F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21FDE121-64E9-42D2-BBF5-85DFE08FA95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21FDE121-64E9-42D2-BBF5-85DFE08FA95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21FDE121-64E9-42D2-BBF5-85DFE08FA95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21FDE121-64E9-42D2-BBF5-85DFE08FA95D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

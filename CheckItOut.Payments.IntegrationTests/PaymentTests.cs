@@ -24,7 +24,8 @@ namespace CheckItOut.Payments.IntegrationTests
             
             //Act:
             var result = await client.PostAsync("/payments", new StringContent(JsonConvert.SerializeObject(new { Amount = 10 }), Encoding.UTF8, "application/json"));
-            Assert:
+            
+            //Assert:
             Assert.True(false);
         }
 
