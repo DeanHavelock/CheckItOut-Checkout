@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ricj70AJwP7sE3qE13VJSQY4VUGQcZ0RAzezTJwU4DBZz9DiNfGZrKJ6QubItKFgQWOXXLdYmdAQROk5yBUuWA==",
+  "dgSpecHash": "FqSfXtm8Hei1RIW3hzZW3Mjl3n+ITLYU4RbQDdY9KYf+8WZ7sZ/XpfmSvRePFDIQxdgv6TmxJ+O/xltU3LS52A==",
   "success": true,
   "projectFilePath": "C:\\Users\\DeanH\\Documents\\Visual Studio 2019\\Projects\\CheckItOut\\CheckItOut.Payments.Infrastructure\\CheckItOut.Payments.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\DeanH\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\DeanH\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\DeanH\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
+    "C:\\Users\\DeanH\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\DeanH\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\DeanH\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\DeanH\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
