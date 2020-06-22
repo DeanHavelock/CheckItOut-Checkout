@@ -1,6 +1,7 @@
 ﻿using CheckItOut.Payments.Domain;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
 using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
+using System;
 using System.Threading.Tasks;
 
 namespace CheckItOut.Payments.Infrastructure.Persistence.InMemory
@@ -18,6 +19,11 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.InMemory
         public async Task Add(Payment payment)
         {
             await _context.AddAsync(payment);
+        }
+
+        public async Task<Payment> GetById(Guid paymentId)
+        {
+            return await _context.Payments.FindAsync(paymentId);
         }
 
         public async Task Save()

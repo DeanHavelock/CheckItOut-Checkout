@@ -1675,7 +1675,8 @@
       "CheckItOut.Payments.Infrastructure/1.0.0": {
         "dependencies": {
           "CheckItOut.Payments.Domain": "1.0.0",
-          "Microsoft.EntityFrameworkCore.Design": "3.1.5"
+          "Microsoft.EntityFrameworkCore.Design": "3.1.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5"
         },
         "runtime": {
           "CheckItOut.Payments.Infrastructure.dll": {}

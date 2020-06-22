@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace CheckItOut.Payments.Domain.Interfaces.Repository
 {
@@ -6,5 +7,6 @@ namespace CheckItOut.Payments.Domain.Interfaces.Repository
     {
         Task Add(Payment payment);
         Task Save();
+        Task<Payment> GetById(Guid paymentId);
     }
 }

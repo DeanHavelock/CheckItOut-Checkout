@@ -12,7 +12,8 @@ namespace CheckItOut.Payments.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Amount = table.Column<decimal>(nullable: false)
+                    Amount = table.Column<decimal>(nullable: false),
+                    CardNumber = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

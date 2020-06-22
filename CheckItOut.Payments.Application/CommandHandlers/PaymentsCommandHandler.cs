@@ -24,7 +24,10 @@ namespace CheckItOut.Payments.Application.CommandHandlers
         {
             var payment = new Payment
             {
-                Amount = command.Amount
+                Id = command.PaymentId,
+                MerchantId = command.MerchantId,
+                Amount = command.Amount,
+                CardNumber = command.CardNumber                
             };
 
             await _paymentRepository.Add(payment);

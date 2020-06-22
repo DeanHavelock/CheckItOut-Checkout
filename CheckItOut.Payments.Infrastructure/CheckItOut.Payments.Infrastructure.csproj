@@ -16,4 +16,8 @@
     <ProjectReference Include="..\CheckItOut.Payments.Domain\CheckItOut.Payments.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

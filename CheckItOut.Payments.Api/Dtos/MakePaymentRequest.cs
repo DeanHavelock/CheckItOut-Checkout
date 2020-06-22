@@ -8,5 +8,6 @@ namespace CheckItOut.Payments.Api.Dtos
         [Range(1, 100000)]
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }
+        public string CardNumber { get; set; }
     }
 }

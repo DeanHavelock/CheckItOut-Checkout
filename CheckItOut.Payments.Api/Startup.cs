@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CheckItOut.Payments.Application.CommandHandlers;
+using CheckItOut.Payments.Application.QueryHandlers;
 using CheckItOut.Payments.Domain;
 using CheckItOut.Payments.Domain.Interfaces;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
+using CheckItOut.Payments.Domain.Queries;
 using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using CheckItOut.Payments.Infrastructure.Persistence.InMemory;
 using Microsoft.AspNetCore.Builder;
@@ -39,8 +41,12 @@ namespace CheckItOut.Payments.Api
                 options.UseSqlServer(Configuration.GetConnectionString("CheckItOut"));
             });
 
-
+            //comands
             services.AddTransient<IPaymentsCommandHandler, PaymentsCommandHandler>();
+
+            //queries
+            services.AddTransient<IQueryPayments, QueryPaymentHandler>();
+
             services.AddTransient<IPaymentRepository, PaymentRepository>();
         }
 
@@ -60,7 +66,7 @@ namespace CheckItOut.Payments.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

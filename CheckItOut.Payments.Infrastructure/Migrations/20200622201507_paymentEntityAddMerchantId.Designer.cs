@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CheckItOut.Payments.Infrastructure.Migrations
 {
     [DbContext(typeof(CheckItOutContext))]
-    [Migration("20200620222546_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200622201507_paymentEntityAddMerchantId")]
+    partial class paymentEntityAddMerchantId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,12 @@ namespace CheckItOut.Payments.Infrastructure.Migrations
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CardNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MerchantId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
