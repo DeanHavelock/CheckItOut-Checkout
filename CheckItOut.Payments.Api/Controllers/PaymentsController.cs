@@ -44,7 +44,7 @@ namespace CheckItOut.Payments.Api.Controllers
                 PaymentId = paymentId,
                 Amount = request.Amount,
                 CardNumber = request.CardNumber,
-                MerchantId = "GetFromToken"
+                MerchantId = "TEST"
             };
 
             return command;

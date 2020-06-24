@@ -1,8 +1,10 @@
 using CheckItOut.Payments.Api.Controllers;
 using CheckItOut.Payments.Api.Dtos;
 using CheckItOut.Payments.Application.CommandHandlers;
+using CheckItOut.Payments.Domain.BankSim;
 using CheckItOut.Payments.Domain.Commands;
 using CheckItOut.Payments.Domain.Interfaces;
+using CheckItOut.Payments.Infrastructure.BankSim;
 using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -19,7 +21,7 @@ namespace CheckItOut.Payments.UnitTests
         {
             var commandHander = new Mock<IPaymentsCommandHandler>();
 
-            var controller = new PaymentsController(commandHander.Object, new CheckItOutContext(null));
+            var controller = new PaymentsController(commandHander.Object);
 
             var request = new MakePaymentRequest { Amount = 99.89m };
 
@@ -27,6 +29,7 @@ namespace CheckItOut.Payments.UnitTests
 
             commandHander.Verify(handler => handler.Process(It.Is<MakePaymentCommand>((command) => command.Amount == 99.89m)));
         }
+
 
        
     }

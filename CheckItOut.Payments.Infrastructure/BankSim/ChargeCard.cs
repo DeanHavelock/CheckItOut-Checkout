@@ -1,22 +1,18 @@
 ﻿using CheckItOut.Payments.Domain.BankSim;
-using Newtonsoft.Json;
+using CheckItOut.Payments.Domain.BankSim.Dto;
 using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace CheckItOut.Payments.Infrastructure.BankSim
 {
     public class ChargeCard : IChargeCard
     {
-        //public void Card(FromCard fromCard, ToAccount toAccount)
-        //{
-        //    HttpClient client = new HttpClient();
-        //    client.PostAsync("https://banksim.com/ChargeCard", new StringContent(JsonConvert.SerializeObject(makePaymentRequest), Encoding.UTF8, "application/json")
-        //}
-        public void Charge()
+        public Task<FinaliseTransactionResponse> Charge(FinaliseTransactionRequest finaliseTransactionRequest)
         {
-            throw new NotImplementedException();
+            //    HttpClient client = new HttpClient();
+            //    var response = await client.PostAsync("https://banksim.com/ChargeCard", new StringContent(JsonConvert.SerializeObject(makePaymentRequest), Encoding.UTF8, "application/json")
+
+            return Task.FromResult(new FinaliseTransactionResponse { TransactionId = Guid.NewGuid().ToString() });
         }
     }
 }

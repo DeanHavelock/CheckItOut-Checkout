@@ -12,3 +12,4 @@ C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payme
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.runtimeconfig.json
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\bin\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.runtimeconfig.dev.json
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.genruntimeconfig.cache
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Infrastructure\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Infrastructure.csproj.CoreCompileInputs.cache

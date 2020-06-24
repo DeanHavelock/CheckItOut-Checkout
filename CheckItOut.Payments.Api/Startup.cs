@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using CheckItOut.Payments.Application.CommandHandlers;
 using CheckItOut.Payments.Application.QueryHandlers;
 using CheckItOut.Payments.Domain;
+using CheckItOut.Payments.Domain.BankSim;
 using CheckItOut.Payments.Domain.Interfaces;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
 using CheckItOut.Payments.Domain.Queries;
+using CheckItOut.Payments.Infrastructure.BankSim;
 using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using CheckItOut.Payments.Infrastructure.Persistence.InMemory;
 using Microsoft.AspNetCore.Builder;
@@ -44,10 +46,20 @@ namespace CheckItOut.Payments.Api
             //comands
             services.AddTransient<IPaymentsCommandHandler, PaymentsCommandHandler>();
 
+
             //queries
             services.AddTransient<IQueryPayments, QueryPaymentHandler>();
+            services.AddTransient<IQueryMerchants, QueryMerchantsHandler>();
 
+            //repositories
+            services.AddTransient<IMerchantRepository, MerchantRepository>();
             services.AddTransient<IPaymentRepository, PaymentRepository>();
+
+
+
+            //external
+            services.AddTransient<IChargeCard, ChargeCard>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

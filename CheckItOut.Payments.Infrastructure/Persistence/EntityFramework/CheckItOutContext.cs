@@ -12,6 +12,8 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.EntityFramework
         }
 
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Merchant> Merchants { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

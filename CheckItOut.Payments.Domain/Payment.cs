@@ -8,5 +8,6 @@ namespace CheckItOut.Payments.Domain
         public decimal Amount { get; set; }
         public string CardNumber { get; set; }
         public string MerchantId { get; set; }
+        public string TransactionId { get; set; }
     }
 }

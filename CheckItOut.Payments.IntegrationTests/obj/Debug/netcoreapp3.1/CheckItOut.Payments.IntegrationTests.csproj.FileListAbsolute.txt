@@ -138,7 +138,6 @@ C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payme
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\CheckItOut.Payments.IntegrationTests.pdb
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\obj\Debug\netcoreapp3.1\CheckItOut.Payments.IntegrationTests.genruntimeconfig.cache
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\obj\Debug\netcoreapp3.1\CheckItOut.Payments.IntegrationTests.csproj.CoreCompileInputs.cache
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Antiforgery.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\refs\Microsoft.AspNetCore.Authentication.Cookies.dll
@@ -411,3 +410,6 @@ C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payme
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\System.Text.Json.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\obj\Debug\netcoreapp3.1\CheckItOut.Payments.IntegrationTests.csproj.CoreCompileInputs.cache
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Moq.dll
