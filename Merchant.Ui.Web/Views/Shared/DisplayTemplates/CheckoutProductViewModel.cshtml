@@ -1,0 +1,21 @@
+﻿@model Merchant.Domain.ViewModels.CheckoutProductViewModel
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Title)</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Delivery)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Delivery)
+        </dd>
+    </dl>
+</div>
+

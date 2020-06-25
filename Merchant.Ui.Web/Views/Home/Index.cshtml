@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Our Store - Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Our Store</h1>
+    <p>The Everything Store</a>.</p>
+</div>
+@using (Html.BeginForm("Index", "Checkout", FormMethod.Get))
+{
+    <input type="button" class="btn btn-success" value="Checkout"/>
+}
+

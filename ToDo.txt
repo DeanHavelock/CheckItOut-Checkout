@@ -1,6 +1,13 @@
 
-Setup Dependency Injection in Api
 Add Authentication (between Ui -> Api, integration tests -> api)
-Add InMemory database / EF code first
 Add Swagger to Api
+Add Docker - dockerfile + docker-compose
+Add CI Server - Codeship, CircleCi, TeamCity
+Add CQRS - Mediator
+Add Moq Tests
 Add Wiremock
+
+
+Done:
+Setup Dependency Injection in Api
+Add InMemory database / EF code first

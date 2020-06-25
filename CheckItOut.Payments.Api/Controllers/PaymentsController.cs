@@ -25,6 +25,7 @@ namespace CheckItOut.Payments.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(MakePaymentRequest paymentRequest)
         {
+            //ToDo, Implement Idempotency with InvoiceId
             var command = MakeCommand(paymentRequest);
 
             await _paymentCommandHandler.Process(command);

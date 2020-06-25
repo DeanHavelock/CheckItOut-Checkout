@@ -1,0 +1,14 @@
+﻿@model Merchant.Domain.ViewModels.CheckoutViewModel
+@{
+    ViewData["Title"] = "Our Store - Checkout Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Our Store</h1>
+    <p>The Everything Store.</p>
+</div>
+@using (Html.BeginForm("Pay", "Checkout", FormMethod.Post))
+{
+    @Html.DisplayForModel(Model)
+}
+

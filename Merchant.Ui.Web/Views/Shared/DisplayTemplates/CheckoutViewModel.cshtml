@@ -1,0 +1,24 @@
+﻿@model Merchant.Domain.ViewModels.CheckoutViewModel
+
+    <div>
+        <h4>Checkout</h4>
+        <hr />
+        @Html.DisplayFor(x => x.CheckoutProductViewModels)
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TotalCost)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TotalCost)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SellerName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SellerName)
+            </dd>
+            @Html.HiddenFor(model => model.SellerMerchantId)
+        </dl>
+    </div>
+<button class="btn btn-warning">Pay</button>
