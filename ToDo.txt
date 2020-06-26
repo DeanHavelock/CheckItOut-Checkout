@@ -1,11 +1,11 @@
-
-Add Authentication (between Ui -> Api, integration tests -> api)
-Add Swagger to Api
-Add Docker - dockerfile + docker-compose
-Add CI Server - Codeship, CircleCi, TeamCity
-Add CQRS - Mediator
-Add Moq Tests
-Add Wiremock
+-Connectionstrings come from application root appsettings. Merchant.Infrastructure + CheckItOut.Infrastructure (not DbFactory)
+-Add Authentication (between Ui -> Api, integration tests -> api)
+-Add Swagger to Api
+-Add Moq Tests + end-to-end functionality testing.
+-Add Docker - dockerfile + docker-compose - Project Tye init
+-Add CI Server - Codeship, CircleCi, TeamCity
+-Add CQRS - Mediator
+-Add Wiremock
 
 
 Done:
