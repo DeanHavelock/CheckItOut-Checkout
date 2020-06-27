@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace CheckItOut.Payments.Api
 {
@@ -29,7 +30,18 @@ namespace CheckItOut.Payments.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("checkitout", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "CheckItOut Payment API",
+                    Description = "Check It Out, A Payment Api, Payments Come To You!",
+                });
+            });
+
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
@@ -70,6 +82,20 @@ namespace CheckItOut.Payments.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger(c =>
+            {
+                c.SerializeAsV2 = true;
+            });
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/checkitout/swagger.json", "CheckItOut Payment API V1");
+                //c.RoutePrefix = string.Empty;
+            });
 
             app.UseHttpsRedirection();
 
