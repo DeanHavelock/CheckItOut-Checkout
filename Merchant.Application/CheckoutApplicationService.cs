@@ -13,12 +13,12 @@ namespace Merchant.Application
         private IOrderRepository _orderRepository;
         private readonly IPostToSecureHttpEndpointWithRetries _postToSecureHttpEndpointWithRetries;
 
-        //public CheckoutApplicationService(IQueryCheckoutApplicationService queryCheckoutApplicationService, IOrderRepository orderRepository, IPostToSecureHttpEndpointWithRetries postToSecureHttpEndpointWithRetries)
-        //{
-        //    _queryCheckoutApplicationService = queryCheckoutApplicationService;
-        //    _orderRepository = orderRepository;
-        //    _postToSecureHttpEndpointWithRetries = postToSecureHttpEndpointWithRetries;
-        //}
+        public CheckoutApplicationService(IQueryCheckoutApplicationService queryCheckoutApplicationService, IOrderRepository orderRepository, IPostToSecureHttpEndpointWithRetries postToSecureHttpEndpointWithRetries)
+        {
+            _queryCheckoutApplicationService = queryCheckoutApplicationService;
+            _orderRepository = orderRepository;
+            _postToSecureHttpEndpointWithRetries = postToSecureHttpEndpointWithRetries;
+        }
 
         public string Checkout(string userId)
         {

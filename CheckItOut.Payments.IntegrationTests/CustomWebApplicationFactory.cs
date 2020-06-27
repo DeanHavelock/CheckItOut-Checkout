@@ -23,15 +23,7 @@ namespace CheckItOut.Payments.IntegrationTests
 
             builder.ConfigureServices(services =>
             {
-                var provider = services.BuildServiceProvider();
-                var scope = provider.CreateScope();
-                var merchantRepository = scope.ServiceProvider.GetRequiredService<IMerchantRepository>();
 
-                var merchant = merchantRepository.GetById("Test").Result;
-                if (merchant == null)
-                {
-                    SetupInitialTestData(merchantRepository);
-                }
                 //var serviceProvider = new ServiceCollection()
                 //    .AddEntityFrameworkInMemoryDatabase()
                 //    .BuildServiceProvider();
@@ -45,11 +37,6 @@ namespace CheckItOut.Payments.IntegrationTests
 
         }
 
-        private void SetupInitialTestData(IMerchantRepository merchantRepository)
-        {
-            var newMerchant = new Merchant() { MerchantId = "TEST", FullName = "bob", AccountNumber = "1111111111111111", SortCode = "111111" };
-            merchantRepository.Add(newMerchant).Wait();
-            merchantRepository.Save().Wait();
-        }
+
     }
 }

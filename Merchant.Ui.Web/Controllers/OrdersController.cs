@@ -9,11 +9,11 @@ namespace Merchant.Ui.Web.Controllers
         private IQueryCheckoutApplicationService _queryCheckoutApplicationService;
         private ICheckoutApplicationService _checkoutApplicationService;
 
-        //public OrdersController(IQueryCheckoutApplicationService queryCheckoutApplicationService, ICheckoutApplicationService checkoutApplicationService)
-        //{
-        //    _queryCheckoutApplicationService = queryCheckoutApplicationService;
-        //    _checkoutApplicationService = checkoutApplicationService;
-        //}
+        public OrdersController(IQueryCheckoutApplicationService queryCheckoutApplicationService, ICheckoutApplicationService checkoutApplicationService)
+        {
+            _queryCheckoutApplicationService = queryCheckoutApplicationService;
+            _checkoutApplicationService = checkoutApplicationService;
+        }
 
         //[Authorize]
         [HttpGet]

@@ -1,36 +1,66 @@
-using CheckItOut.Payments.Domain.Queries.Projections;
-using Merchant.Application.Clients.CheckItOut.Payments.Dtos;
-using Merchant.Domain.HttpContracts;
-using Merchant.Ui.Web;
-using Moq;
-using Newtonsoft.Json;
+﻿using Merchant.Ui.Web;
 using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Merchant.Domain.HttpContracts;
+using System.Net.Http;
+using Merchant.Application.Clients.CheckItOut.Payments.Dtos;
+using Newtonsoft.Json;
+using System.Net;
+using System.Linq;
+using CheckItOut.Payments.Domain.Queries.Projections;
 
 namespace Merchant.IntegrationTests
 {
     public class CheckoutTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private CustomWebApplicationFactory<Startup> _factory;
-        public CheckoutTests(CustomWebApplicationFactory<Startup> factory) 
+        private HttpClient _client;
+
+        public CheckoutTests(CustomWebApplicationFactory<Startup> factory)
         {
             _factory = factory;
+            _client = _factory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    services.AddTransient<IPostToSecureHttpEndpointWithRetries, MockPostToSecureHttpEndpointWithRetries>();
+                    //var privateServiceProvider = services.BuildServiceProvider();
+
+                    //using (var scope = _privateServiceProvider.CreateScope())
+                    //{
+                    //    var scopedServices = scope.ServiceProvider;
+                    //    //var db = scopedServices
+                    //    //    .GetRequiredService<ApplicationDbContext>();
+                    //    //var logger = scopedServices
+                    //    //    .GetRequiredService<ILogger<IndexPageTests>>();
+                    //
+                    //    //try
+                    //    //{
+                    //    //    Utilities.ReinitializeDbForTests(db);
+                    //    //}
+                    //    //catch (Exception ex)
+                    //    //{
+                    //    //    logger.LogError(ex, "An error occurred seeding " +
+                    //    //        "the database with test messages. Error: {Message}",
+                    //    //        ex.Message);
+                    //    //}
+                    //}
+                });
+            })
+                .CreateClient(new WebApplicationFactoryClientOptions
+                {
+                    AllowAutoRedirect = false
+                });
         }
 
         [Fact]
-        public async Task MakeValidCheckoutCreatesOrder()
+        public async Task TestInitialisationOfDependencyOverrideFromInsideXunitIntegrationTestUsingMockService()
         {
-            //Arrange:
-            var client = _factory.CreateClient();
-
-            //var mockClient = new Mock<HttpClient>();
-            //mockClient.Setup(x => x.PostAsync(It.IsAny<string>(), It.IsAny<HttpContent>())).ReturnsAsync(new HttpResponseMessage());
-
             var makePaymentRequest = new MakeGuestToMerchantPaymentRequest
             {
                 Amount = 1000,
@@ -42,12 +72,12 @@ namespace Merchant.IntegrationTests
             };
 
             //Act:
-            var result = await client.PostAsync("/Orders", new StringContent(JsonConvert.SerializeObject(makePaymentRequest), Encoding.UTF8, "application/json"));
+            var result = await _client.PostAsync("/Orders", new StringContent(JsonConvert.SerializeObject(makePaymentRequest), Encoding.UTF8, "application/json"));
 
             //Assert:
             var paymentId = result.Headers.Location.ToString().Split('/').Last();
             var queryUrl = result.Headers.Location;
-            var queryResults = await client.GetAsync(queryUrl);
+            var queryResults = await _client.GetAsync(queryUrl);
 
             var queryContent = await queryResults.Content.ReadAsStringAsync();
             var deserializedGetPaymentResponse = JsonConvert.DeserializeObject<GetPaymentResponse>(queryContent);
@@ -58,4 +88,5 @@ namespace Merchant.IntegrationTests
             Assert.Equal(makePaymentRequest.Amount, deserializedGetPaymentResponse.Amount);
         }
     }
+    
 }
