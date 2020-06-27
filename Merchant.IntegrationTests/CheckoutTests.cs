@@ -14,13 +14,12 @@ using Xunit;
 
 namespace Merchant.IntegrationTests
 {
-    public class CheckoutTests
+    public class CheckoutTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private CustomWebApplicationFactory<Startup> _factory;
-        public CheckoutTests(CustomWebApplicationFactory<Startup> factory)
+        public CheckoutTests(CustomWebApplicationFactory<Startup> factory) 
         {
             _factory = factory;
-            //_factory.CreateClient();
         }
 
         [Fact]

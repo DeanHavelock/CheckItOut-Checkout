@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Merchant.Domain.HttpContracts;
-using Merchant.Infrastructure.HttpSecureSender;
 
 namespace Merchant.IntegrationTests
 {
