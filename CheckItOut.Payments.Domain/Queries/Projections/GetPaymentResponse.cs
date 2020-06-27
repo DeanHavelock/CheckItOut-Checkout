@@ -7,6 +7,6 @@ namespace CheckItOut.Payments.Domain.Queries.Projections
     public class GetPaymentResponse
     {
         public decimal Amount { get; set; }
-        public Guid PaymentId { get; set; }
+        public string PaymentId { get; set; }
     }
 }

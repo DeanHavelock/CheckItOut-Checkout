@@ -47,7 +47,7 @@ namespace CheckItOut.Payments.IntegrationTests
 
         private void SetupInitialTestData(IMerchantRepository merchantRepository)
         {
-            var newMerchant = new Merchant() { Id = "TEST", FullName = "bob", AccountNumber = "1111111111111111", SortCode = "111111" };
+            var newMerchant = new Merchant() { MerchantId = "TEST", FullName = "bob", AccountNumber = "1111111111111111", SortCode = "111111" };
             merchantRepository.Add(newMerchant).Wait();
             merchantRepository.Save().Wait();
         }

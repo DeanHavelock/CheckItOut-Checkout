@@ -1,9 +1,5 @@
 ﻿using CheckItOut.Payments.Domain.Commands;
 using CheckItOut.Payments.Domain;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using CheckItOut.Payments.Domain.Interfaces;
 using System.Threading.Tasks;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
@@ -12,7 +8,7 @@ using CheckItOut.Payments.Domain.BankSim.Dto;
 using CheckItOut.Payments.Domain.Queries;
 
 namespace CheckItOut.Payments.Application.CommandHandlers
-{    
+{
     public class PaymentsCommandHandler : IPaymentsCommandHandler
     {
         private IPaymentRepository _paymentRepository;
@@ -26,32 +22,78 @@ namespace CheckItOut.Payments.Application.CommandHandlers
             _merchantQueries = merchantQueries;
         }
 
-
-        public async Task Process(MakePaymentCommand command)
+        public async Task Handle(MakePaymentCommand command)
         {
-            var merchant = await _merchantQueries.GetById(command.MerchantId);
+            //ToDo: Idempotent InvoiceId Check Here
+            //.......
 
+            var recipient = await _merchantQueries.GetById(command.RecipientMerchantId);
             var chargeRequest = new FinaliseTransactionRequest
             {
-                RecipientAccountNumber = merchant.AccountNumber,
-                SenderCardNumber = command.CardNumber
+                InvoiceId = command.InvoiceId,
+                RecipientAccountNumber = recipient.AccountNumber,
+                RecipientSortCode = recipient.SortCode,
+                SenderCardNumber = command.SenderCardNumber,
+                SenderCvv = command.SenderCvv,
+                Amount = command.Amount,
+                CurrencyCode = command.CurrencyCode,
             };
-
-            //MakePayment
-            var chargeResponse = await _chargeCard.Charge(chargeRequest);
-
+            
             //Save
             var payment = new Payment
             {
-                Id = command.PaymentId,
-                MerchantId = command.MerchantId,
+                PaymentId = command.PaymentId,
+                InvoiceId = command.InvoiceId,
+                RecipientMerchantId = recipient.MerchantId,
+                SenderCardNumber = command.SenderCardNumber,
                 Amount = command.Amount,
-                CardNumber = command.CardNumber,
-                TransactionId = chargeResponse.TransactionId
+                CurrencyCode = command.CurrencyCode,
             };
 
             await _paymentRepository.Add(payment);
             await _paymentRepository.Save();
+            
+            //ToDo: Implement Retries and Auth to Endpoint
+            //MakePayment
+            var chargeResponse = await _chargeCard.Charge(chargeRequest);
+
+            payment.BankSimTransactionId = chargeResponse.BankSimTransactionId;
+
+            //await _paymentRepository.Add(payment);
+            await _paymentRepository.Save();
         }
+
+        //public async Task Process(MakeMerchantToMerchantPaymentCommand command)
+        //{
+        //    var sender = await _merchantQueries.GetById(command.SenderMerchantId);
+        //    var recipient = await _merchantQueries.GetById(command.RecipientMerchantId);
+
+        //    var chargeRequest = new FinaliseTransactionRequest
+        //    {
+        //        InvoiceId = command.InvoiceId,
+        //        RecipientAccountNumber = recipient.AccountNumber,
+        //        RecipientSortCode = recipient.SortCode,
+        //        SenderCardNumber = sender.CardNumber,
+        //        SenderCsv = sender.Csv
+        //    };
+
+        //    //MakePayment
+        //    var chargeResponse = await _chargeCard.Charge(chargeRequest);
+
+        //    //Save
+        //    var payment = new Payment
+        //    {
+        //        PaymentId = command.PaymentId,
+        //        InvoiceId = command.InvoiceId,
+        //        SenderMerchantId = sender.MerchantId,
+        //        CardNumber = sender.CardNumber,
+        //        Amount = command.Amount,
+        //        RecipientMerchantId = recipient.MerchantId,
+        //        BankSimTransactionId = chargeResponse.TransactionId
+        //    };
+
+        //    await _paymentRepository.Add(payment);
+        //    await _paymentRepository.Save();
+        //}
     }
 }

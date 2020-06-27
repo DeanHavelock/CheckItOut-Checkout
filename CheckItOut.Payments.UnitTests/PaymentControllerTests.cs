@@ -23,11 +23,11 @@ namespace CheckItOut.Payments.UnitTests
 
             var controller = new PaymentsController(commandHander.Object);
 
-            var request = new MakePaymentRequest { Amount = 99.89m };
+            var request = new MakeGuestToMerchantPaymentRequest { Amount = 99.89m };
 
             await controller.Post(request);
 
-            commandHander.Verify(handler => handler.Process(It.Is<MakePaymentCommand>((command) => command.Amount == 99.89m)));
+            commandHander.Verify(handler => handler.Handle(It.Is<MakePaymentCommand>((command) => command.Amount == 99.89m)));
         }
 
 

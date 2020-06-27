@@ -18,7 +18,7 @@ namespace CheckItOut.Payments.Api.Controllers
 
         [Authorize]
         [HttpGet, Route("{paymentId}", Name = "GetPayment")]
-        public async Task<IActionResult> Get(Guid paymentId)
+        public async Task<IActionResult> Get(string paymentId)
         {
             var payment = await _paymentsQuery.Query(new GetPayment { PaymentId = paymentId });
 

@@ -24,12 +24,14 @@ namespace CheckItOut.Payments.UnitTests
 
             var paymentCommand = new Domain.Commands.MakePaymentCommand()
             {
-                Amount = 1000,
-                CardNumber = "444444444444",
-                MerchantId = Guid.NewGuid().ToString(),
-                PaymentId = Guid.NewGuid()
+                PaymentId = Guid.NewGuid().ToString(),
+                InvoiceId = Guid.NewGuid().ToString(),
+                RecipientMerchantId = Guid.NewGuid().ToString(),
+                SenderCardNumber = "444444444444",
+                SenderCvv = "111",
+                Amount = 1000
             };
-            await commandHander.Process(paymentCommand);
+            await commandHander.Handle(paymentCommand);
             mockRepo.Verify(x => x.Add(It.Is<Payment>(p=> CheckCommandMappedToPayment(p, paymentCommand))));
             Assert.True(true);
         }
@@ -47,13 +49,13 @@ namespace CheckItOut.Payments.UnitTests
                 
             var commandHander = new PaymentsCommandHandler(mockRepo.Object, merchantQueries.Object, bankSimChargeCard.Object);
 
-            var command = new MakePaymentCommand { Amount = 100, CardNumber = "4444444444444444", MerchantId = Guid.NewGuid().ToString(), PaymentId = Guid.NewGuid() };                 
+            var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv="111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };                 
 
-            await commandHander.Process(command);
+            await commandHander.Handle(command);
 
             bankSimChargeCard.Verify(x => x.Charge(It.Is<FinaliseTransactionRequest>(request =>
                 request.RecipientAccountNumber == merchant.AccountNumber
-                && request.SenderCardNumber == command.CardNumber)));
+                && request.SenderCardNumber == command.SenderCardNumber)));
        
         }
 
@@ -65,18 +67,18 @@ namespace CheckItOut.Payments.UnitTests
             var mockMerchantQueries = new Mock<IQueryMerchants>();
 
             var merchant = new Merchant { AccountNumber = "888888" };
-            var chargeResponse = new FinaliseTransactionResponse { TransactionId = Guid.NewGuid().ToString() };
+            var chargeResponse = new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString() };
 
             mockMerchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
             mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(chargeResponse);
 
             var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object);
 
-            var command = new MakePaymentCommand { Amount = 100, CardNumber = "4444444444444444", MerchantId = Guid.NewGuid().ToString(), PaymentId = Guid.NewGuid() };
+            var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv = "111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
 
-            await commandHander.Process(command);
+            await commandHander.Handle(command);
 
-            mockRepo.Verify(x => x.Add(It.Is<Payment>(payment => payment.TransactionId == chargeResponse.TransactionId)));
+            mockRepo.Verify(x => x.Add(It.Is<Payment>(payment => payment.BankSimTransactionId == chargeResponse.BankSimTransactionId)));
         }
 
         
@@ -84,9 +86,9 @@ namespace CheckItOut.Payments.UnitTests
         private bool CheckCommandMappedToPayment(Payment payment, Domain.Commands.MakePaymentCommand paymentCommand)
         {
             if(payment.Amount == paymentCommand.Amount
-                && payment.CardNumber == paymentCommand.CardNumber
-                && payment.Id == paymentCommand.PaymentId
-                && payment.MerchantId == paymentCommand.MerchantId)
+                && payment.SenderCardNumber == paymentCommand.SenderCardNumber
+                && payment.PaymentId == paymentCommand.PaymentId
+                && payment.RecipientMerchantId == paymentCommand.RecipientMerchantId)
             { return true; }
             return false;
         }

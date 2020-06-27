@@ -6,6 +6,7 @@ namespace CheckItOut.Payments.Domain.BankSim.Dto
 {
    public  class FinaliseTransactionResponse
     {
-        public string TransactionId { get; set; }
+        public string BankSimTransactionId { get; set; }
+        public bool Success { get; set; }
     }
 }

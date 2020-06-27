@@ -21,32 +21,36 @@ namespace CheckItOut.Payments.Api.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Post(MakePaymentRequest paymentRequest)
+        public async Task<IActionResult> Post(MakeGuestToMerchantPaymentRequest paymentRequest)
         {
             //ToDo, Implement Idempotency with InvoiceId
             var command = MakeCommand(paymentRequest);
 
-            await _paymentCommandHandler.Process(command);
+            await _paymentCommandHandler.Handle(command);
 
-            var uri = Url.Link("GetPayment", new { paymentId = command.PaymentId   });
+            var uri = Url.Link("GetPayment", new { paymentId = command.PaymentId });
 
-            return Created(uri, null);            
+            return Created(uri, null);
         }
 
-        //place in factory
-        private static MakePaymentCommand MakeCommand(MakePaymentRequest request)
+        ////move to factory
+        private static MakePaymentCommand MakeCommand(MakeGuestToMerchantPaymentRequest request)
         {
             var paymentId = Guid.NewGuid();
 
             var command = new MakePaymentCommand
             {
-                PaymentId = paymentId,
+                PaymentId = paymentId.ToString(),
+                InvoiceId = request.InvoiceId,
                 Amount = request.Amount,
-                CardNumber = request.CardNumber,
-                MerchantId = "TEST"
+                CurrencyCode= request.CurrencyCode,
+                RecipientMerchantId = request.RecipientMerchantId,
+                SenderCardNumber = request.SenderCardNumber,
+                SenderCvv = request.SenderCvv,
             };
-
+        
             return command;
         }
+
     }
 }

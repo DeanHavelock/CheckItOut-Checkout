@@ -18,7 +18,7 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Payment>().HasKey(e => e.Id);
+            modelBuilder.Entity<Payment>().HasKey(e => e.PaymentId);
         }
     }
 

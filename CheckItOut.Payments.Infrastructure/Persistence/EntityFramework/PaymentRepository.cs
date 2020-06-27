@@ -21,7 +21,7 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.InMemory
             await _context.AddAsync(payment);
         }
 
-        public async Task<Payment> GetById(Guid paymentId)
+        public async Task<Payment> GetById(string paymentId)
         {
             return await _context.Payments.FindAsync(paymentId);
         }
