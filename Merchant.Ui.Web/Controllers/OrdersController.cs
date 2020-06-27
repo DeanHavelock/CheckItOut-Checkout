@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Merchant.Ui.Web.Controllers
 {
-    public class CheckoutController : Controller
+    public class OrdersController : Controller
     {
         private IQueryCheckoutApplicationService _queryCheckoutApplicationService;
         private ICheckoutApplicationService _checkoutApplicationService;
 
-        public CheckoutController(IQueryCheckoutApplicationService queryCheckoutApplicationService, ICheckoutApplicationService checkoutApplicationService)
-        {
-            _queryCheckoutApplicationService = queryCheckoutApplicationService;
-            _checkoutApplicationService = checkoutApplicationService;
-        }
+        //public OrdersController(IQueryCheckoutApplicationService queryCheckoutApplicationService, ICheckoutApplicationService checkoutApplicationService)
+        //{
+        //    _queryCheckoutApplicationService = queryCheckoutApplicationService;
+        //    _checkoutApplicationService = checkoutApplicationService;
+        //}
 
         //[Authorize]
         [HttpGet]
@@ -25,7 +25,7 @@ namespace Merchant.Ui.Web.Controllers
         }
 
         //[Authorize]
-        [HttpPost]
+        [HttpPost, Route("Orders")]
         public IActionResult Pay()
         {
             string subjectId = "2b837f52-becd-4938-8a35-0906d8c7d591"; //Get from signed in authentication context (subject)

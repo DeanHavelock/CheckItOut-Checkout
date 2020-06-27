@@ -32,6 +32,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "Swashbuckle.AspNetCore.Swagger": "5.5.1",
           "Swashbuckle.AspNetCore.SwaggerGen": "5.5.1",
+          "Swashbuckle.AspNetCore.SwaggerUI": "5.5.1",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -795,6 +796,17 @@
         },
         "compile": {
           "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerUI/5.5.1": {
+        "runtime": {
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {
+            "assemblyVersion": "5.5.1.0",
+            "fileVersion": "5.5.1.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         }
       },
       "System.Collections/4.3.0": {
@@ -3304,6 +3316,13 @@
       "sha512": "sha512-SftLofzIA063y73rn17YCf4dSXrgZdxLBig9E/HT4IIZ9mlsm12KmsNKUXf4U+X09KO8sVq1D29XfjVtC69eAg==",
       "path": "swashbuckle.aspnetcore.swaggergen/5.5.1",
       "hashPath": "swashbuckle.aspnetcore.swaggergen.5.5.1.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.SwaggerUI/5.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-a2Ym9DYrvTZ/Yt8GVfn6M1ZP++Ra3KAfCNe4pTtkNiHpBgWhsYWUT3T07REtFImduBh93GAHuItZpltSOZV13A==",
+      "path": "swashbuckle.aspnetcore.swaggerui/5.5.1",
+      "hashPath": "swashbuckle.aspnetcore.swaggerui.5.5.1.nupkg.sha512"
     },
     "System.Collections/4.3.0": {
       "type": "package",

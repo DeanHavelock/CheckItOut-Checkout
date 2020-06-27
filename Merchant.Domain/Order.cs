@@ -10,7 +10,7 @@ namespace Merchant.Domain
         public string UserId { get; set; }
         public OrderStatus Status { get; set; }
         public string CurrencyCode { get; set; }
-        public double TotalAmount { get { return OrderItems.Sum(x=>x.Price); } }
+        public decimal TotalAmount { get { return OrderItems.Sum(x=>x.Price); } }
         public IEnumerable<OrderItem> OrderItems { get; set; }
     }
 }

@@ -33,6 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Merchant.Application", "Mer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.IntegrationTests", "Merchant.IntegrationTests\Merchant.IntegrationTests.csproj", "{A28CE317-70DE-40C7-AAA9-3DD5668FD5D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject1", "XUnitTestProject1\XUnitTestProject1.csproj", "{B2A3B490-DE45-41DC-A033-DE570D43A571}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A28CE317-70DE-40C7-AAA9-3DD5668FD5D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A28CE317-70DE-40C7-AAA9-3DD5668FD5D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A28CE317-70DE-40C7-AAA9-3DD5668FD5D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A28CE317-70DE-40C7-AAA9-3DD5668FD5D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A3B490-DE45-41DC-A033-DE570D43A571}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A3B490-DE45-41DC-A033-DE570D43A571}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A3B490-DE45-41DC-A033-DE570D43A571}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A3B490-DE45-41DC-A033-DE570D43A571}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

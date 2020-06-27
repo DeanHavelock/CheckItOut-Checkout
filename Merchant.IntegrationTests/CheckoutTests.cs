@@ -1,7 +1,7 @@
-using CheckItOut.Payments.Api;
-using CheckItOut.Payments.Api.Dtos;
-using CheckItOut.Payments.Domain.BankSim;
 using CheckItOut.Payments.Domain.Queries.Projections;
+using Merchant.Application.Clients.CheckItOut.Payments.Dtos;
+using Merchant.Domain.HttpContracts;
+using Merchant.Ui.Web;
 using Moq;
 using Newtonsoft.Json;
 using System;
@@ -12,23 +12,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CheckItOut.Payments.IntegrationTests
+namespace Merchant.IntegrationTests
 {
-    public class PaymentTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class CheckoutTests
     {
         private CustomWebApplicationFactory<Startup> _factory;
-        public PaymentTests(CustomWebApplicationFactory<Startup> factory)
+        public CheckoutTests(CustomWebApplicationFactory<Startup> factory)
         {
             _factory = factory;
+            //_factory.CreateClient();
         }
 
         [Fact]
-        public async Task MakeValidPaymentCreatesPayment()
+        public async Task MakeValidCheckoutCreatesOrder()
         {
             //Arrange:
             var client = _factory.CreateClient();
 
-            //Act:
+            //var mockClient = new Mock<HttpClient>();
+            //mockClient.Setup(x => x.PostAsync(It.IsAny<string>(), It.IsAny<HttpContent>())).ReturnsAsync(new HttpResponseMessage());
+
             var makePaymentRequest = new MakeGuestToMerchantPaymentRequest
             {
                 Amount = 1000,
@@ -39,7 +42,8 @@ namespace CheckItOut.Payments.IntegrationTests
                 InvoiceId = Guid.NewGuid().ToString()
             };
 
-            var result = await client.PostAsync("/payments", new StringContent(JsonConvert.SerializeObject(makePaymentRequest), Encoding.UTF8, "application/json"));
+            //Act:
+            var result = await client.PostAsync("/Orders", new StringContent(JsonConvert.SerializeObject(makePaymentRequest), Encoding.UTF8, "application/json"));
 
             //Assert:
             var paymentId = result.Headers.Location.ToString().Split('/').Last();
@@ -54,7 +58,5 @@ namespace CheckItOut.Payments.IntegrationTests
             Assert.Equal(paymentId, deserializedGetPaymentResponse.PaymentId.ToString());
             Assert.Equal(makePaymentRequest.Amount, deserializedGetPaymentResponse.Amount);
         }
-
-
     }
 }

@@ -420,3 +420,7 @@ C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payme
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.IntegrationTests\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll

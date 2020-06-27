@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Merchant.Application;
+using Merchant.Domain.HttpContracts;
 using Merchant.Domain.Interfaces;
+using Merchant.Infrastructure.HttpSecureSender;
 using Merchant.Infrastructure.Persistence.EntityFramework;
 using Merchant.Ui.Web.Controllers;
 using Microsoft.AspNetCore.Builder;
@@ -43,6 +45,9 @@ namespace Merchant.Ui.Web
 
             //repositories
             services.AddTransient<IOrderRepository, OrderRepository>();
+
+            //HttpImplementations
+            services.AddTransient<IPostToSecureHttpEndpointWithRetries, PostToSecureHttpEndpointWithRetries>();
 
         }
 
