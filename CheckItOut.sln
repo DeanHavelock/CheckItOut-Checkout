@@ -23,13 +23,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckItOut.Ui.Web", "CheckItOut.Ui.Web\CheckItOut.Ui.Web.csproj", "{21FDE121-64E9-42D2-BBF5-85DFE08FA95D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Ui.Web", "Merchant.Ui.Web\Merchant.Ui.Web.csproj", "{83DC097A-F6A3-40F2-A806-E82FC8973CAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Merchant.Ui.Web", "Merchant.Ui.Web\Merchant.Ui.Web.csproj", "{83DC097A-F6A3-40F2-A806-E82FC8973CAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Infrastructure", "Merchant.Infrastructure\Merchant.Infrastructure.csproj", "{9C59E8FC-F8C2-4A95-BC0D-FC098A8D63ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Merchant.Infrastructure", "Merchant.Infrastructure\Merchant.Infrastructure.csproj", "{9C59E8FC-F8C2-4A95-BC0D-FC098A8D63ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Domain", "Merchant.Domain\Merchant.Domain.csproj", "{11EA5463-BCCB-44DD-89F4-28A661530169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Merchant.Domain", "Merchant.Domain\Merchant.Domain.csproj", "{11EA5463-BCCB-44DD-89F4-28A661530169}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merchant.Application", "Merchant.Application\Merchant.Application.csproj", "{98493E6D-39CB-4066-A3A4-F73E37BC7E66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Merchant.Application", "Merchant.Application\Merchant.Application.csproj", "{98493E6D-39CB-4066-A3A4-F73E37BC7E66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{98493E6D-39CB-4066-A3A4-F73E37BC7E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98493E6D-39CB-4066-A3A4-F73E37BC7E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98493E6D-39CB-4066-A3A4-F73E37BC7E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4637C67-7066-46F0-A8DE-CC4F7B957FB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

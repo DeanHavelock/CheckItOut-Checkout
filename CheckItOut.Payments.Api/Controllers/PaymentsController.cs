@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using CheckItOut.Payments.Api.Dtos;
-using CheckItOut.Payments.Domain;
 using CheckItOut.Payments.Domain.Commands;
 using CheckItOut.Payments.Domain.Interfaces;
-using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace CheckItOut.Payments.Api.Controllers
 {
@@ -22,6 +19,7 @@ namespace CheckItOut.Payments.Api.Controllers
             _paymentCommandHandler = paymentCommandHandler;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post(MakePaymentRequest paymentRequest)
         {

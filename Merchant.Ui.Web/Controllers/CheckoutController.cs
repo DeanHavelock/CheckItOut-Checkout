@@ -19,7 +19,7 @@ namespace Merchant.Ui.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var subjectIdFromContext = Guid.NewGuid().ToString();
+            var subjectIdFromContext = "2b837f52-becd-4938-8a35-0906d8c7d591";
             var checkout = _queryCheckoutApplicationService.GetCheckoutFromBasket(subjectIdFromContext);
             return View(checkout);
         }

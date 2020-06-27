@@ -1,4 +1,5 @@
 ﻿using CheckItOut.Payments.Domain.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace CheckItOut.Payments.Api.Controllers
             _paymentsQuery = paymentsQuery;
         }        
 
+        [Authorize]
         [HttpGet, Route("{paymentId}", Name = "GetPayment")]
         public async Task<IActionResult> Get(Guid paymentId)
         {

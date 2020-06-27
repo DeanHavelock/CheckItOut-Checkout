@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CheckItOut.Payments.Application.CommandHandlers;
 using CheckItOut.Payments.Application.QueryHandlers;
-using CheckItOut.Payments.Domain;
 using CheckItOut.Payments.Domain.BankSim;
 using CheckItOut.Payments.Domain.Interfaces;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
@@ -14,13 +9,10 @@ using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using CheckItOut.Payments.Infrastructure.Persistence.InMemory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace CheckItOut.Payments.Api
 {
@@ -38,6 +30,15 @@ namespace CheckItOut.Payments.Api
         {
             services.AddControllers();
             
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "https://localhost:5001";
+                    options.RequireHttpsMetadata = false;
+
+                    options.Audience = "CheckoutApi";
+                });
+
             services.AddDbContext<CheckItOutContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("CheckItOut"));
@@ -74,6 +75,7 @@ namespace CheckItOut.Payments.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
