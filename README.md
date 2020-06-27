@@ -7,5 +7,5 @@ Setup Instructions.
 
 
 Design Considerations:
- - (could add dotnet db updates to powersmell script)
+ - (could add dotnet db updates to powershell script)
  - Could add an IFrame for the Payment within the Merchant.Ui and webhooks with signalR for payment updates
