@@ -1,10 +1,8 @@
 using CheckItOut.Payments.Api;
 using CheckItOut.Payments.Api.Dtos;
-using CheckItOut.Payments.Domain.BankSim;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
 using CheckItOut.Payments.Domain.Queries.Projections;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Moq;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -15,6 +13,9 @@ using System.Threading.Tasks;
 using Xunit;
 using Microsoft.Extensions.DependencyInjection;
 using CheckItOut.Payments.Domain;
+using Moq;
+using CheckItOut.Payments.Domain.BankSim;
+using CheckItOut.Payments.Domain.BankSim.Dto;
 
 namespace CheckItOut.Payments.IntegrationTests
 {
@@ -22,6 +23,7 @@ namespace CheckItOut.Payments.IntegrationTests
     {
         private CustomWebApplicationFactory<Startup> _factory;
         private HttpClient _client;
+        private Mock<IChargeCard> _chargeCard;
 
         private void SetupInitialTestData(IMerchantRepository merchantRepository)
         {
@@ -32,11 +34,14 @@ namespace CheckItOut.Payments.IntegrationTests
 
         public PaymentTests(CustomWebApplicationFactory<Startup> factory)
         {
+            _chargeCard = new Mock<IChargeCard>();
+
             _factory = factory;
             _client = _factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureServices(services =>
                 {
+                    services.AddSingleton<IChargeCard>(_chargeCard.Object);
                     var privateServiceProvider = services.BuildServiceProvider();
 
                     using (var scope = privateServiceProvider.CreateScope())
@@ -55,18 +60,19 @@ namespace CheckItOut.Payments.IntegrationTests
                     }
                 });
             })
-                .CreateClient(new WebApplicationFactoryClientOptions
-                {
-                    AllowAutoRedirect = false
-                });
+            .CreateClient(new WebApplicationFactoryClientOptions
+            {
+                AllowAutoRedirect = false
+            });
         }
 
         [Fact]
         public async Task MakeValidPaymentCreatesPayment()
         {
             //Arrange:
+            _chargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(new FinaliseTransactionResponse { BankSimTransactionId = "1234" });
 
-            //Act:
+            
             var makePaymentRequest = new MakeGuestToMerchantPaymentRequest
             {
                 Amount = 1000,
@@ -77,6 +83,7 @@ namespace CheckItOut.Payments.IntegrationTests
                 InvoiceId = Guid.NewGuid().ToString()
             };
 
+            //Act:
             var result = await _client.PostAsync("/payments", new StringContent(JsonConvert.SerializeObject(makePaymentRequest), Encoding.UTF8, "application/json"));
 
             //Assert:
@@ -93,6 +100,11 @@ namespace CheckItOut.Payments.IntegrationTests
             Assert.Equal(makePaymentRequest.Amount, deserializedGetPaymentResponse.Amount);
         }
 
+        [Fact]
+        public async Task FailedPaymentRequest() 
+        { 
 
-    }
+        }
+            
+     }
 }

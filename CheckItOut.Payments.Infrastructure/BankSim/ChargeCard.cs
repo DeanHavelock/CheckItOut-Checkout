@@ -12,7 +12,7 @@ namespace CheckItOut.Payments.Infrastructure.BankSim
             //    HttpClient client = new HttpClient();
             //    var response = await client.PostAsync("https://banksim.com/ChargeCard", new StringContent(JsonConvert.SerializeObject(makePaymentRequest), Encoding.UTF8, "application/json")
 
-            return Task.FromResult(new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString() });
+            return Task.FromResult(new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString(), Success=true });
         }
     }
 }

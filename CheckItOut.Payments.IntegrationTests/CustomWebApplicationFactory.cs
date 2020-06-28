@@ -1,8 +1,5 @@
-﻿using CheckItOut.Payments.Domain;
-using CheckItOut.Payments.Domain.Interfaces.Repository;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace CheckItOut.Payments.IntegrationTests
 {

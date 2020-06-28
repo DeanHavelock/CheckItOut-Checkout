@@ -14,5 +14,8 @@
         public string RecipientSortCode { get; set; }
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }
+        public string PaymentId { get; set; }
+        public string SenderCardExpiryMonth { get; set; }
+        public string SenderCardExpiryYear { get; set; }
     }
 }

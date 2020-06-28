@@ -152,3 +152,6 @@ C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payme
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.UnitTests\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.UnitTests\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.UnitTests\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.UnitTests\bin\Debug\netcoreapp3.1\IdentityModel.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.UnitTests\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.UnitTests\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

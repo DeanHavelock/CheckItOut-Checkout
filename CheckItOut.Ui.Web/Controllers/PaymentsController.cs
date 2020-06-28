@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using CheckItOut.Ui.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

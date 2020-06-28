@@ -60,10 +60,16 @@ namespace CheckItOut.Payments.Infrastructure.Migrations
                     b.Property<string>("InvoiceId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RecipientMerchantId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SenderCardNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PaymentId");

@@ -36,17 +36,21 @@ namespace CheckItOut.Payments.Api.Controllers
         ////move to factory
         private static MakePaymentCommand MakeCommand(MakeGuestToMerchantPaymentRequest request)
         {
-            var paymentId = Guid.NewGuid();
+            var paymentId = Guid.NewGuid().ToString();
 
             var command = new MakePaymentCommand
             {
-                PaymentId = paymentId.ToString(),
+                PaymentId = paymentId,
                 InvoiceId = request.InvoiceId,
+                OrderId = request.OrderId,
                 Amount = request.Amount,
                 CurrencyCode= request.CurrencyCode,
                 RecipientMerchantId = request.RecipientMerchantId,
                 SenderCardNumber = request.SenderCardNumber,
                 SenderCvv = request.SenderCvv,
+                SenderCardExpiryMonth = request.SenderCardExpiryMonth,
+                SenderCardExpiryYear = request.SenderCardExpiryYear,
+                UserId = request.UserId
             };
         
             return command;

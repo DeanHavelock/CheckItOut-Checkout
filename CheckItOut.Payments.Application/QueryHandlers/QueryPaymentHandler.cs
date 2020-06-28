@@ -25,7 +25,12 @@ namespace CheckItOut.Payments.Application.QueryHandlers
 
         private GetPaymentResponse MapResponseFromEntity(Payment payment)
         {
-            return new GetPaymentResponse { PaymentId = payment.PaymentId, Amount = payment.Amount };
+            return new GetPaymentResponse 
+            { 
+                PaymentId = payment.PaymentId, 
+                Amount = payment.Amount,
+                MaskedCardNumber = payment.SenderCardNumber
+            };
         }
     }
 }

@@ -6,12 +6,13 @@ using CheckItOut.Payments.Domain.Interfaces.Repository;
 using CheckItOut.Payments.Domain.BankSim;
 using CheckItOut.Payments.Domain.BankSim.Dto;
 using CheckItOut.Payments.Domain.Queries;
+using System;
 
 namespace CheckItOut.Payments.Application.CommandHandlers
 {
     public class PaymentsCommandHandler : IPaymentsCommandHandler
     {
-        private IPaymentRepository _paymentRepository;
+        private readonly IPaymentRepository _paymentRepository;
         private readonly IChargeCard _chargeCard;
         private readonly IQueryMerchants _merchantQueries;
 
@@ -24,8 +25,9 @@ namespace CheckItOut.Payments.Application.CommandHandlers
 
         public async Task Handle(MakePaymentCommand command)
         {
-            //ToDo: Idempotent InvoiceId Check Here
-            //.......
+            var duplicatePaymentAttempt = await _paymentRepository.GetByInvoiceId(command.InvoiceId);
+             if (duplicatePaymentAttempt != null && !string.IsNullOrWhiteSpace(duplicatePaymentAttempt.InvoiceId)) 
+                throw new Exception("Duplicate Payment Attempt, PaymentId with InvoiceId: " + command.InvoiceId + " already exists");
 
             var recipient = await _merchantQueries.GetById(command.RecipientMerchantId);
             var chargeRequest = new FinaliseTransactionRequest
@@ -35,6 +37,8 @@ namespace CheckItOut.Payments.Application.CommandHandlers
                 RecipientSortCode = recipient.SortCode,
                 SenderCardNumber = command.SenderCardNumber,
                 SenderCvv = command.SenderCvv,
+                SenderCardExpiryMonth = command.SenderCardExpiryMonth,
+                SenderCardExpiryYear = command.SenderCardExpiryYear,
                 Amount = command.Amount,
                 CurrencyCode = command.CurrencyCode,
             };
@@ -43,6 +47,7 @@ namespace CheckItOut.Payments.Application.CommandHandlers
             var payment = new Payment
             {
                 PaymentId = command.PaymentId,
+                OrderId = command.OrderId,
                 InvoiceId = command.InvoiceId,
                 RecipientMerchantId = recipient.MerchantId,
                 SenderCardNumber = command.SenderCardNumber,
@@ -57,43 +62,13 @@ namespace CheckItOut.Payments.Application.CommandHandlers
             //MakePayment
             var chargeResponse = await _chargeCard.Charge(chargeRequest);
 
-            payment.BankSimTransactionId = chargeResponse.BankSimTransactionId;
-
+            if (chargeResponse.Success)
+                payment.Succeed(chargeResponse.BankSimTransactionId);
+            else
+                payment.Fail("return a reason from bank");
+           
             //await _paymentRepository.Add(payment);
             await _paymentRepository.Save();
         }
-
-        //public async Task Process(MakeMerchantToMerchantPaymentCommand command)
-        //{
-        //    var sender = await _merchantQueries.GetById(command.SenderMerchantId);
-        //    var recipient = await _merchantQueries.GetById(command.RecipientMerchantId);
-
-        //    var chargeRequest = new FinaliseTransactionRequest
-        //    {
-        //        InvoiceId = command.InvoiceId,
-        //        RecipientAccountNumber = recipient.AccountNumber,
-        //        RecipientSortCode = recipient.SortCode,
-        //        SenderCardNumber = sender.CardNumber,
-        //        SenderCsv = sender.Csv
-        //    };
-
-        //    //MakePayment
-        //    var chargeResponse = await _chargeCard.Charge(chargeRequest);
-
-        //    //Save
-        //    var payment = new Payment
-        //    {
-        //        PaymentId = command.PaymentId,
-        //        InvoiceId = command.InvoiceId,
-        //        SenderMerchantId = sender.MerchantId,
-        //        CardNumber = sender.CardNumber,
-        //        Amount = command.Amount,
-        //        RecipientMerchantId = recipient.MerchantId,
-        //        BankSimTransactionId = chargeResponse.TransactionId
-        //    };
-
-        //    await _paymentRepository.Add(payment);
-        //    await _paymentRepository.Save();
-        //}
     }
 }

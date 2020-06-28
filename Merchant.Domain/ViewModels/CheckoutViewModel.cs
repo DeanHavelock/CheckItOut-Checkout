@@ -9,7 +9,7 @@ namespace Merchant.Domain.ViewModels
         public CheckoutViewModel()
         {
             UserId = "2b837f52-becd-4938-8a35-0906d8c7d591";
-            SellerMerchantId = Guid.NewGuid().ToString();
+            SellerMerchantId = "TEST";
             SellerName = "SellItAll";
             CurrencyCode = "GBP";
             CheckoutProductViewModels = new List<CheckoutProductViewModel>()
@@ -20,7 +20,7 @@ namespace Merchant.Domain.ViewModels
         }
 
         public IEnumerable<CheckoutProductViewModel> CheckoutProductViewModels;
-        public string SellerName { get; set; }
+        public string SellerName { get; }
         public string SellerMerchantId { get; }
         public decimal TotalCost => CheckoutProductViewModels.Sum(x => x.Price + x.Delivery);
         public string CurrencyCode { get; }

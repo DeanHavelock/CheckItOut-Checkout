@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading;
 
-namespace Merchant.Application
+namespace Merchant.Infrastructure.HttpSecureSender
 {
     public class RetryHandler : DelegatingHandler
     {

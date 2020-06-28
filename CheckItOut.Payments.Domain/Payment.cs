@@ -6,6 +6,11 @@ namespace CheckItOut.Payments.Domain
     {
         private string _cardNumber;
 
+        public Payment()
+        {
+            Status = PaymentStatus.Pending;
+        }
+
         public string PaymentId { get; set; }
         public string InvoiceId { get; set; }
         public string BankSimTransactionId { get; set; }
@@ -23,5 +28,26 @@ namespace CheckItOut.Payments.Domain
         }
 
         public string CurrencyCode { get; set; }
+
+        public string Status { get; set; }
+        public string OrderId { get; set; }
+
+        public void Succeed(string transactionId)
+        {
+            BankSimTransactionId = transactionId;
+            Status = PaymentStatus.Succeeded;
+        }
+        public void Fail(string reason)
+        {
+            Status = PaymentStatus.Failed;
+        }
+
+    }
+
+    public static class PaymentStatus
+    {
+        public const string Pending = "pending";
+        public const string Succeeded = "succeeded";
+        public const string Failed = "failed";
     }
 }
