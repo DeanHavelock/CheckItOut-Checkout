@@ -4,20 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Merchant.Ui.Web.Controllers
 {
-    [Route("InternalCheckout")]
-    public class InternalCheckoutController : Controller
+    public class NoPciDssCheckoutController : Controller
     {
         private IQueryCheckoutApplicationService _queryCheckoutApplicationService;
         private ICheckoutApplicationService _checkoutApplicationService;
 
-        public InternalCheckoutController(IQueryCheckoutApplicationService queryCheckoutApplicationService, ICheckoutApplicationService checkoutApplicationService)
+        public NoPciDssCheckoutController(IQueryCheckoutApplicationService queryCheckoutApplicationService, ICheckoutApplicationService checkoutApplicationService)
         {
             _queryCheckoutApplicationService = queryCheckoutApplicationService;
             _checkoutApplicationService = checkoutApplicationService;
         }
 
         //[Authorize]
-        [HttpGet]
+        [HttpGet, Route("Payment")]
         public IActionResult Index()
         {
             var subjectIdFromContext = "2b837f52-becd-4938-8a35-0906d8c7d591";
@@ -26,7 +25,7 @@ namespace Merchant.Ui.Web.Controllers
         }
 
         //[Authorize]
-        [HttpPost, Route("InternalCheckout")]
+        [HttpPost, Route("Payment")]
         public IActionResult CheckoutUsingCardDetailsAndBasketFromMerchantSite()
         {
             string invoiceId = Guid.NewGuid().ToString();//set from UI
@@ -39,7 +38,7 @@ namespace Merchant.Ui.Web.Controllers
             return RedirectToAction("OrderSubmitted", new { orderId });
         }
 
-        [HttpPost]
+        [HttpPost, Route("Payment")]
         public IActionResult OrderSubmitted(string orderId)
         {
             return new ContentResult() { Content = "Order Submitted - " + orderId, StatusCode = 201 };

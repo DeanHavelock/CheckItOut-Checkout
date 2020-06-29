@@ -32,7 +32,7 @@ namespace CheckItOut.Payments.Application.CommandHandlers
              if (duplicatePaymentAttempt != null && !string.IsNullOrWhiteSpace(duplicatePaymentAttempt.InvoiceId)) 
                 throw new Exception("Duplicate Payment Attempt, PaymentId with InvoiceId: " + command.InvoiceId + " already exists");
 
-            //Prepaire ChargeRequest with Sender And Merchant Details
+            //Prepair ChargeRequest with Sender And Merchant Details
             var recipient = _merchantQueries.GetById(command.RecipientMerchantId).Result;
             var chargeRequest = MapToChargeRequest(command, recipient);
             

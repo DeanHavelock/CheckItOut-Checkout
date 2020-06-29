@@ -23,7 +23,6 @@ namespace CheckItOut.Payments.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(MakeGuestToMerchantPaymentRequest paymentRequest)
         {
-            //ToDo, Implement Idempotency with InvoiceId
             var command = MakeCommand(paymentRequest);
 
             await _paymentCommandHandler.Handle(command);

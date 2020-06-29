@@ -1,20 +1,20 @@
-﻿using System;
-using Merchant.Domain.Interfaces;
+﻿using Merchant.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Merchant.Ui.Web.Controllers
 {
-    public class CheckoutController : Controller
+    public class PciDssCheckoutController : Controller
     {
         private IQueryCheckoutApplicationService _queryCheckoutApplicationService;
         private ICheckoutApplicationService _checkoutApplicationService;
 
-        public CheckoutController(IQueryCheckoutApplicationService queryCheckoutApplicationService, ICheckoutApplicationService checkoutApplicationService)
+        public PciDssCheckoutController(IQueryCheckoutApplicationService queryCheckoutApplicationService, ICheckoutApplicationService checkoutApplicationService)
         {
             _queryCheckoutApplicationService = queryCheckoutApplicationService;
             _checkoutApplicationService = checkoutApplicationService;
         }
 
+        [Route("Checkout")]
         //[Authorize]
         [HttpGet]
         public IActionResult Index()
@@ -34,6 +34,7 @@ namespace Merchant.Ui.Web.Controllers
             return Redirect("https://localhost:44328/TakePayment?paymentRequestId=" + paymentRequestId);
         }
 
+        //[Authorize]
         [HttpGet, Route("CheckoutResponse")]
         public IActionResult CheckoutResponse(string invoiceId, string paymentId)
         {
@@ -41,10 +42,5 @@ namespace Merchant.Ui.Web.Controllers
             return new ContentResult() { Content = "Order Placed: " + invoiceId, StatusCode = 201 };
         }
 
-        [HttpPost]
-        public IActionResult OrderSubmitted(string orderId)
-        {
-            return new ContentResult() { Content = "Order Submitted - " + orderId, StatusCode = 201 };
-        }
     }
 }
