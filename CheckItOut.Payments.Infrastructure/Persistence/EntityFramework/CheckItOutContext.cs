@@ -10,8 +10,9 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.EntityFramework
 
         }
 
-        public DbSet<CheckItOut.Payments.Domain.Payment> Payments { get; set; }
-        public DbSet<CheckItOut.Payments.Domain.Merchant> Merchants { get; set; }
+        public DbSet<Domain.Payment> Payments { get; set; }
+        public DbSet<Domain.Merchant> Merchants { get; set; }
+        public DbSet<Domain.PaymentRequest> PaymentRequests { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

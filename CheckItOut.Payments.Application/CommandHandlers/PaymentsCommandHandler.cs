@@ -16,10 +16,9 @@ namespace CheckItOut.Payments.Application.CommandHandlers
         private readonly IPaymentRepository _paymentRepository;
         private readonly IChargeCard _chargeCard;
         private readonly IQueryMerchants _merchantQueries;
-        //private readonly INotifyMerchantPaymentSubmitted _notifyMerchantPaymentSubmitted;
         private readonly INotifyMerchantPaymentSucceeded _notifyMerchantPaymentSucceeded;
 
-        public PaymentsCommandHandler(IPaymentRepository paymentRepository, IQueryMerchants merchantQueries, IChargeCard chargeCard, /*INotifyMerchantPaymentSubmitted _notifyMerchantPaymentSubmitted, */INotifyMerchantPaymentSucceeded notifyMerchantPaymentSucceeded)
+        public PaymentsCommandHandler(IPaymentRepository paymentRepository, IQueryMerchants merchantQueries, IChargeCard chargeCard, INotifyMerchantPaymentSucceeded notifyMerchantPaymentSucceeded)
         {
             _paymentRepository = paymentRepository;
             _chargeCard = chargeCard;
@@ -27,54 +26,20 @@ namespace CheckItOut.Payments.Application.CommandHandlers
             _notifyMerchantPaymentSucceeded = notifyMerchantPaymentSucceeded;
         }
 
-        public async Task Handle(MakePaymentFromInternalCommand command)
+        public async Task<string> Handle(MakePaymentCommand command)
         {
-            //idempotent check
-            var duplicatePaymentAttempt = await _paymentRepository.GetByInvoiceId(command.InvoiceId);
-            if (duplicatePaymentAttempt != null && !string.IsNullOrWhiteSpace(duplicatePaymentAttempt.InvoiceId))
-                throw new Exception("Duplicate Payment Attempt, PaymentId with InvoiceId: " + command.InvoiceId + " already exists");
-
-            //submit notification to Merchant (to create order)
-            //await _notifyMerchantPaymentSubmitted.Notify();
-
-            //Prepaire ChargeRequest with Sender And Merchant Details
-            var recipient = await _merchantQueries.GetById(command.RecipientMerchantId);
-            var chargeRequest = MapToChargeRequest(command, recipient);
-
-            //Save Payment Request
-            var payment = MapToPayment(command, recipient);
-            await _paymentRepository.Add(payment);
-            await _paymentRepository.Save();
-
-            //ToDo: Implement Retries and Auth to Endpoint
-            //MakePayment
-            var chargeResponse = await _chargeCard.Charge(chargeRequest);
-            if (chargeResponse.Success)
-            {
-                payment.Succeed(chargeResponse.BankSimTransactionId);
-                //notify Merchant of PaymentSuccessful (to update Order.PaymentStatus)
-                await _notifyMerchantPaymentSucceeded.Notify();
-            }
-            else
-                payment.Fail("return a reason from bank");
-
-            await _paymentRepository.Save();
-        }
-
-        public async Task Handle(MakePaymentCommand command)
-        {
-            var duplicatePaymentAttempt = await _paymentRepository.GetByInvoiceId(command.InvoiceId);
+            var duplicatePaymentAttempt = _paymentRepository.GetByInvoiceId(command.InvoiceId).Result;
              if (duplicatePaymentAttempt != null && !string.IsNullOrWhiteSpace(duplicatePaymentAttempt.InvoiceId)) 
                 throw new Exception("Duplicate Payment Attempt, PaymentId with InvoiceId: " + command.InvoiceId + " already exists");
 
             //Prepaire ChargeRequest with Sender And Merchant Details
-            var recipient = await _merchantQueries.GetById(command.RecipientMerchantId);
+            var recipient = _merchantQueries.GetById(command.RecipientMerchantId).Result;
             var chargeRequest = MapToChargeRequest(command, recipient);
-
+            
             //Save Payment Request
             var payment = MapToPayment(command, recipient);
-            await _paymentRepository.Add(payment);
-            await _paymentRepository.Save();
+            _paymentRepository.Add(payment).Wait();
+            _paymentRepository.Save().Wait();
 
             //ToDo: Implement Retries and Auth to Endpoint
             //MakePayment
@@ -82,25 +47,33 @@ namespace CheckItOut.Payments.Application.CommandHandlers
             if (chargeResponse.Success)
             {
                 payment.Succeed(chargeResponse.BankSimTransactionId);
+                _paymentRepository.Save().Wait();
+                //await _notifyMerchantPaymentSucceeded.Notify(command.InvoiceId, payment.PaymentId, recipient.MerchantId);
+                //await _notifyCustomerByEmailPaymentSucceeded.Notify(command.SenderEmail, command.InvoiceId, payment.PaymentId, recipient.MerchantId);
             }
-                
             else
+            {
                 payment.Fail("return a reason from bank");
-           
-            await _paymentRepository.Save();
+                _paymentRepository.Save().Wait();
+            }
+
+            //update paymentRequest.Status
+
+            return payment.PaymentId;
         }
 
         private Payment MapToPayment(MakePaymentCommand command, Merchant recipient)
         {
             return new Payment
             {
-                PaymentId = command.PaymentId,
+                PaymentId = Guid.NewGuid().ToString(),
                 OrderId = command.OrderId,
                 InvoiceId = command.InvoiceId,
                 RecipientMerchantId = recipient.MerchantId,
                 SenderCardNumber = command.SenderCardNumber,
                 Amount = command.Amount,
                 CurrencyCode = command.CurrencyCode,
+                Status = PaymentStatus.Pending
             };
         }
 
@@ -115,6 +88,8 @@ namespace CheckItOut.Payments.Application.CommandHandlers
                 SenderCvv = command.SenderCvv,
                 SenderCardExpiryMonth = command.SenderCardExpiryMonth,
                 SenderCardExpiryYear = command.SenderCardExpiryYear,
+                RecipientFullName = recipient.FullName,
+                SenderFullName = command.SenderFullName,
                 Amount = command.Amount,
                 CurrencyCode = command.CurrencyCode,
             };

@@ -14,7 +14,6 @@ namespace CheckItOut.Payments.Application.QueryHandlers
             _merchantRepository = merchantRepository;
         }
 
-        
         public async Task<Merchant> GetById(string id)
         {
             var result = await _merchantRepository.GetById(id);

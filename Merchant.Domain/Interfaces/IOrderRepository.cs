@@ -4,5 +4,6 @@
     {
         void Add(Order order);
         void Update(Order order);
+        Order GetByInvoiceId(string invoiceId);
     }
 }

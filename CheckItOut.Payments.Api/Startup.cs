@@ -34,7 +34,6 @@ namespace CheckItOut.Payments.Api
             //services.AddControllers();
             services.AddControllersWithViews();
 
-
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -60,7 +59,8 @@ namespace CheckItOut.Payments.Api
                 options.UseSqlServer(Configuration.GetConnectionString("CheckItOut"));
             });
 
-            //comands
+            //comands 
+            services.AddTransient<IPrepairPaymentCommandHandler, PrepairPaymentCommandHandler>();
             services.AddTransient<IPaymentsCommandHandler, PaymentsCommandHandler>();
 
 
@@ -71,6 +71,7 @@ namespace CheckItOut.Payments.Api
             //repositories
             services.AddTransient<IMerchantRepository, MerchantRepository>();
             services.AddTransient<IPaymentRepository, PaymentRepository>();
+            services.AddTransient<IPaymentRequestRepository, PaymentRequestRepository>();
 
 
             //external

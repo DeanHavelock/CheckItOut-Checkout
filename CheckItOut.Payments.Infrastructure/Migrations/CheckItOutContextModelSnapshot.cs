@@ -76,6 +76,28 @@ namespace CheckItOut.Payments.Infrastructure.Migrations
 
                     b.ToTable("Payments");
                 });
+
+            modelBuilder.Entity("CheckItOut.Payments.Domain.PaymentRequest", b =>
+                {
+                    b.Property<string>("PaymentRequestId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Amount")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrencyCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InvoiceId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MerchantId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PaymentRequestId");
+
+                    b.ToTable("PaymentRequests");
+                });
 #pragma warning restore 612, 618
         }
     }

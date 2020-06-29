@@ -17,5 +17,6 @@
         public string PaymentId { get; set; }
         public string SenderCardExpiryMonth { get; set; }
         public string SenderCardExpiryYear { get; set; }
+        public string SenderFullName { get; set; }
     }
 }

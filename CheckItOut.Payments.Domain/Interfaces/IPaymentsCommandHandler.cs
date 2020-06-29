@@ -5,6 +5,6 @@ namespace CheckItOut.Payments.Domain.Interfaces
 {
     public interface IPaymentsCommandHandler
     {
-        public Task Handle(MakePaymentCommand command);
+        public Task<string> Handle(MakePaymentCommand command);
     }
 }

@@ -12,7 +12,7 @@ namespace Merchant.Infrastructure.HttpSecureSender
     {
         public HttpResponseMessage Post(string apiClientUrl, string idServerUrl, string clientId, string secret, string tokenScope, object dto)
         {
-            var response = PostToSecurePaymentApiWithRetries(apiClientUrl:"https://localhost:44379/Payments", idServerUrl:"https://localhost:5001", clientId, secret, tokenScope, dto);
+            var response = PostToSecurePaymentApiWithRetries(apiClientUrl: apiClientUrl, idServerUrl: idServerUrl, clientId, secret, tokenScope, dto);
 
             return response;
         }

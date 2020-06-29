@@ -2,6 +2,7 @@
 using CheckItOut.Payments.Domain.Interfaces.Repository;
 using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CheckItOut.Payments.Infrastructure.Persistence.InMemory

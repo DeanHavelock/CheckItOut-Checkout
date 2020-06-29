@@ -15,5 +15,7 @@ namespace CheckItOut.Payments.Domain.Commands
         public string SenderCardExpiryYear { get; set; }
         public string SenderCardExpiryMonth { get; set; }
         public string CurrencyCode { get; set; }
+        public string SenderEmail { get; set; }
+        public string SenderFullName { get; set; }
     }
 }

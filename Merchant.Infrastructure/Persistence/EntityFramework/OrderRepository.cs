@@ -1,5 +1,6 @@
 ﻿using Merchant.Domain;
 using Merchant.Domain.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Merchant.Infrastructure.Persistence.EntityFramework
@@ -24,8 +25,16 @@ namespace Merchant.Infrastructure.Persistence.EntityFramework
         {
             var matchingOrder = _webAppDbContext.Orders.First(x => x.OrderId == order.OrderId);
             matchingOrder.Status = order.Status;
+            matchingOrder.PaymentId = order.PaymentId;
             _webAppDbContext.Orders.Update(matchingOrder);
             _webAppDbContext.SaveChanges();
+        }
+
+        public Order GetByInvoiceId(string invoiceId)
+        {
+            var order = _webAppDbContext.Orders.FirstOrDefault(x => x.InvoiceId == invoiceId);
+            order.OrderItems = _webAppDbContext.OrderItems.Where(x => x.OrderId == order.OrderId).ToList();
+            return order;
         }
     }
 }
