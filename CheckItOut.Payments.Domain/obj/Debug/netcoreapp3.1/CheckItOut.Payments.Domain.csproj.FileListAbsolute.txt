@@ -4,6 +4,6 @@ C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payme
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Domain\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.csprojAssemblyReference.cache
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Domain\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.AssemblyInfoInputs.cache
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Domain\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.AssemblyInfo.cs
+C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Domain\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.csproj.CoreCompileInputs.cache
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Domain\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.dll
 C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Domain\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.pdb
-C:\Users\DeanH\Documents\Visual Studio 2019\Projects\CheckItOut\CheckItOut.Payments.Domain\obj\Debug\netcoreapp3.1\CheckItOut.Payments.Domain.csproj.CoreCompileInputs.cache

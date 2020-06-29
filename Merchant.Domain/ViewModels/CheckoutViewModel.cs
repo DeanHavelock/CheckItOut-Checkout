@@ -8,6 +8,8 @@ namespace Merchant.Domain.ViewModels
     {
         public CheckoutViewModel()
         {
+            InvoiceId = Guid.NewGuid().ToString();
+            OrderId = Guid.NewGuid().ToString();
             UserId = "2b837f52-becd-4938-8a35-0906d8c7d591";
             SellerMerchantId = "TEST";
             SellerName = "SellItAll";
@@ -26,6 +28,8 @@ namespace Merchant.Domain.ViewModels
         public string CurrencyCode { get; }
 
         public string UserId { get; }
+        public string InvoiceId { get; }
+        public string OrderId { get; }
     }
 
     public class CheckoutProductViewModel

@@ -1,3 +1,5 @@
+- implement retries + auth from payment endpoint to BankSim (create new api project for BankSim)
+
 -Implement authorized post requests in tests
 -Implement idempotency with invoiceId on CheckItOut.Payment.Api Post
 -Add IFrame of CheckItOut.Payment.Web.Ui to Merchant.Ui.Web with webhook on CheckItOut.Payment.Web.Ui to publish back to Merchant.Ui.Web and SignalR to update the Checkout_Order_Placed/Paid View

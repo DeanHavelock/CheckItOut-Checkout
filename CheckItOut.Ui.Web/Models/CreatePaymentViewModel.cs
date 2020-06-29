@@ -9,8 +9,7 @@ namespace CheckItOut.Ui.Web.Models
     {
         public string InvoiceId {get;set;}
         public string OrderId { get; set; }
-        public string RecipientAccountNumber { get; set; }
-        public string RecipientSortCode { get; set; }
+        public string RecipientMerchantId { get; set; }
         public string Amount { get; set; }
         public string SenderFullName { get; set; }
         public string SenderCardNumber { get; set; }

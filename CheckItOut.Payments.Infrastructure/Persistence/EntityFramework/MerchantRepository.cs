@@ -16,13 +16,13 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.InMemory
             _context = context;
         }
 
-        public async Task Add(Merchant entity)
+        public async Task Add(CheckItOut.Payments.Domain.Merchant entity)
         {
             await _context.AddAsync(entity);
         }
 
 
-        public async Task<Merchant> GetById(string id)
+        public async Task<CheckItOut.Payments.Domain.Merchant> GetById(string id)
         {
             return await _context.Merchants.FindAsync(id);
         }

@@ -11,4 +11,5 @@
 {
     @Html.DisplayForModel(Model)
 }
+<iframe title="Payment Wep App" src="https://localhost:44379/checkout/create?invoiceId=@Model.InvoiceId&orderId=@Model.OrderId&amount=@Model.TotalCost&recipientMerchantId=@Model.SellerMerchantId" style="width: 100%; height: 260px;"></iframe>
 

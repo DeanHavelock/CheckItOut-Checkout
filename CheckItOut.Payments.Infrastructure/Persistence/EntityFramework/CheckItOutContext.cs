@@ -1,5 +1,4 @@
-﻿using CheckItOut.Payments.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace CheckItOut.Payments.Infrastructure.Persistence.EntityFramework
@@ -11,14 +10,14 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.EntityFramework
 
         }
 
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<Merchant> Merchants { get; set; }
+        public DbSet<CheckItOut.Payments.Domain.Payment> Payments { get; set; }
+        public DbSet<CheckItOut.Payments.Domain.Merchant> Merchants { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Payment>().HasKey(e => e.PaymentId);
+            modelBuilder.Entity<CheckItOut.Payments.Domain.Payment>().HasKey(e => e.PaymentId);
         }
     }
 

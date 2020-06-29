@@ -3,8 +3,10 @@ using CheckItOut.Payments.Application.QueryHandlers;
 using CheckItOut.Payments.Domain.BankSim;
 using CheckItOut.Payments.Domain.Interfaces;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
+using CheckItOut.Payments.Domain.MerchantContracts;
 using CheckItOut.Payments.Domain.Queries;
 using CheckItOut.Payments.Infrastructure.BankSim;
+using CheckItOut.Payments.Infrastructure.Merchant;
 using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using CheckItOut.Payments.Infrastructure.Persistence.InMemory;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +31,9 @@ namespace CheckItOut.Payments.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            //services.AddControllers();
+            services.AddControllersWithViews();
+
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -38,7 +42,7 @@ namespace CheckItOut.Payments.Api
                 {
                     Version = "v1",
                     Title = "CheckItOut Payment API",
-                    Description = "Check It Out, A Payment Api, Payments Come To You!",
+                    Description = "Check It Out, A Payment Api, Payments Come And Go!",
                 });
             });
 
@@ -69,9 +73,9 @@ namespace CheckItOut.Payments.Api
             services.AddTransient<IPaymentRepository, PaymentRepository>();
 
 
-
             //external
             services.AddTransient<IChargeCard, ChargeCard>();
+            services.AddTransient<INotifyMerchantPaymentSucceeded, NotifyMerchantPaymentSucceeded>();
 
         }
 
@@ -97,6 +101,8 @@ namespace CheckItOut.Payments.Api
                 //c.RoutePrefix = string.Empty;
             });
 
+            app.UseStaticFiles();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -106,8 +112,13 @@ namespace CheckItOut.Payments.Api
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapDefaultControllerRoute();
+
             });
+
         }
     }
 }

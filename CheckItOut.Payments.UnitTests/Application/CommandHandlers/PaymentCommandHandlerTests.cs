@@ -4,6 +4,7 @@ using CheckItOut.Payments.Domain.BankSim;
 using CheckItOut.Payments.Domain.BankSim.Dto;
 using CheckItOut.Payments.Domain.Commands;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
+using CheckItOut.Payments.Domain.MerchantContracts;
 using CheckItOut.Payments.Domain.Queries;
 using Moq;
 using System;
@@ -20,7 +21,9 @@ namespace CheckItOut.Payments.UnitTests
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMercharQuery = new Mock<IQueryMerchants>();
             var mockBankSim = new Mock<IChargeCard>();
-            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMercharQuery.Object, mockBankSim.Object);
+            var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
+
+            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMercharQuery.Object, mockBankSim.Object, mockNotifyMerchantPaymentSucceeded.Object);
 
             var paymentCommand = new Domain.Commands.MakePaymentCommand()
             {
@@ -45,12 +48,13 @@ namespace CheckItOut.Payments.UnitTests
             var bankSimChargeCard = new Mock<IChargeCard>();
             var mockRepo = new Mock<IPaymentRepository>();
             var merchantQueries = new Mock<IQueryMerchants>();
+            var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
 
             var merchant = new Merchant { AccountNumber = "888888" };
 
             merchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
                 
-            var commandHander = new PaymentsCommandHandler(mockRepo.Object, merchantQueries.Object, bankSimChargeCard.Object);
+            var commandHander = new PaymentsCommandHandler(mockRepo.Object, merchantQueries.Object, bankSimChargeCard.Object, mockNotifyMerchantPaymentSucceeded.Object);
 
             var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv="111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
 
@@ -69,6 +73,7 @@ namespace CheckItOut.Payments.UnitTests
             var mockBankSimChargeCard = new Mock<IChargeCard>();
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMerchantQueries = new Mock<IQueryMerchants>();
+            var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
 
             var merchant = new Merchant { AccountNumber = "888888" };
             var chargeResponse = new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString(), Success=true };
@@ -76,7 +81,7 @@ namespace CheckItOut.Payments.UnitTests
             mockMerchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
             mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(chargeResponse);
 
-            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object);
+            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object, mockNotifyMerchantPaymentSucceeded.Object);
 
             var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv = "111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
 
@@ -93,6 +98,7 @@ namespace CheckItOut.Payments.UnitTests
             var mockBankSimChargeCard = new Mock<IChargeCard>();
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMerchantQueries = new Mock<IQueryMerchants>();
+            var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
 
             var merchant = new Merchant { AccountNumber = "888888" };
             var chargeResponse = new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString() };
@@ -100,7 +106,7 @@ namespace CheckItOut.Payments.UnitTests
             mockMerchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
             mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(chargeResponse);
 
-            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object);
+            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object, mockNotifyMerchantPaymentSucceeded.Object);
 
             var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv = "111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
 
@@ -117,6 +123,7 @@ namespace CheckItOut.Payments.UnitTests
             var mockBankSimChargeCard = new Mock<IChargeCard>();
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMerchantQueries = new Mock<IQueryMerchants>();
+            var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
 
             var merchant = new Merchant { AccountNumber = "888888" };
             var chargeResponse = new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString() };
@@ -124,7 +131,7 @@ namespace CheckItOut.Payments.UnitTests
             mockMerchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
             mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(chargeResponse);
 
-            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object);
+            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object, mockNotifyMerchantPaymentSucceeded.Object);
 
             var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv = "111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
 

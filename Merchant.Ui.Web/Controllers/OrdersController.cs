@@ -44,5 +44,12 @@ namespace Merchant.Ui.Web.Controllers
             return new ContentResult() { Content = "Order Submitted - " + orderId, StatusCode = 201 };
         }
 
+
+        [HttpPost]
+        public void Notifications()
+        {
+            var a = "";
+        } 
+
     }
 }
