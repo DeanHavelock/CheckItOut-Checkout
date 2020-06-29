@@ -1,21 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CheckItOut.Payments.Application.CommandHandlers;
 using CheckItOut.Payments.Application.QueryHandlers;
 using CheckItOut.Payments.Domain.BankSim;
+using CheckItOut.Payments.Domain.HttpContracts;
 using CheckItOut.Payments.Domain.Interfaces;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
 using CheckItOut.Payments.Domain.MerchantContracts;
 using CheckItOut.Payments.Domain.Queries;
 using CheckItOut.Payments.Infrastructure.BankSim;
+using CheckItOut.Payments.Infrastructure.HttpSecureSender;
 using CheckItOut.Payments.Infrastructure.Merchant;
 using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using CheckItOut.Payments.Infrastructure.Persistence.InMemory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,7 +40,6 @@ namespace CheckItOut.Payments.Ui.Web
             });
 
             //comands
-            services.AddTransient<IFullyManagedCheckoutPaymentCommandHandler, FullyManagedCheckoutPaymentCommandHandler>();
             services.AddTransient<IPaymentsCommandHandler, PaymentsCommandHandler>();
 
             //queries
@@ -56,8 +52,9 @@ namespace CheckItOut.Payments.Ui.Web
             services.AddTransient<IPaymentRequestRepository, PaymentRequestRepository>();
 
             //external
-            services.AddTransient<IChargeCard, ChargeCard>();
+            services.AddTransient<IChargeCardAdapter, ChargeCardAdapter>();
             services.AddTransient<INotifyMerchantPaymentSucceeded, NotifyMerchantPaymentSucceeded>();
+            services.AddTransient<IPostToSecureHttpEndpointWithRetries, PostToSecureHttpEndpointWithRetries>();
 
         }
 

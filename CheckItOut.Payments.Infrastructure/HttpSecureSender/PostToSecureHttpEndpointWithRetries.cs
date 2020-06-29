@@ -12,7 +12,7 @@ namespace CheckItOut.Payments.Infrastructure.HttpSecureSender
     {
         public HttpResponseMessage Post(string apiClientUrl, string idServerUrl, string clientId, string secret, string tokenScope, object dto)
         {
-            var response = PostToSecurePaymentApiWithRetries(apiClientUrl:"https://localhost:44379/Payments", idServerUrl:"https://localhost:5001", clientId, secret, tokenScope, dto);
+            var response = PostToSecurePaymentApiWithRetries(apiClientUrl: apiClientUrl, idServerUrl: idServerUrl, clientId, secret, tokenScope, dto);
 
             return response;
         }
@@ -26,7 +26,7 @@ namespace CheckItOut.Payments.Infrastructure.HttpSecureSender
 
         private HttpResponseMessage PostToSecureApiWithRetries(string apiClientUrl, TokenResponse tokenResponse, object dto)
         {
-            //posts to CheckItOut idempotent payment endpoint with retries
+            //posts to apiClientUrl endpoint with jwtBearerToken and retries
             HttpClient apiClient = HttpClientFactory.Create(new RetryHandler());
             apiClient.SetBearerToken(tokenResponse.AccessToken);
             var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");

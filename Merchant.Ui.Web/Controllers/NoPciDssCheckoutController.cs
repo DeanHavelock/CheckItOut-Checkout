@@ -34,7 +34,7 @@ namespace Merchant.Ui.Web.Controllers
             string senderCvv = "111";
             string senderCardExpiryMonth = "02";
             string senderCardExpiryYear = "2020";
-            var orderId = _checkoutApplicationService.CheckoutUsingCardDetailsAndBasketFromMerchantSite(invoiceId, subjectId, senderCardNumber, senderCvv, senderCardExpiryMonth, senderCardExpiryYear);
+            var orderId = _checkoutApplicationService.NotPciDssCheckoutSendCardDetailsFromMerchant(invoiceId, subjectId, senderCardNumber, senderCvv, senderCardExpiryMonth, senderCardExpiryYear);
             return RedirectToAction("OrderSubmitted", new { orderId });
         }
 

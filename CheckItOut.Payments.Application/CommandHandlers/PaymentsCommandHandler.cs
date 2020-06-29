@@ -14,11 +14,11 @@ namespace CheckItOut.Payments.Application.CommandHandlers
     public class PaymentsCommandHandler : IPaymentsCommandHandler
     {
         private readonly IPaymentRepository _paymentRepository;
-        private readonly IChargeCard _chargeCard;
+        private readonly IChargeCardAdapter _chargeCard;
         private readonly IQueryMerchants _merchantQueries;
         private readonly INotifyMerchantPaymentSucceeded _notifyMerchantPaymentSucceeded;
 
-        public PaymentsCommandHandler(IPaymentRepository paymentRepository, IQueryMerchants merchantQueries, IChargeCard chargeCard, INotifyMerchantPaymentSucceeded notifyMerchantPaymentSucceeded)
+        public PaymentsCommandHandler(IPaymentRepository paymentRepository, IQueryMerchants merchantQueries, IChargeCardAdapter chargeCard, INotifyMerchantPaymentSucceeded notifyMerchantPaymentSucceeded)
         {
             _paymentRepository = paymentRepository;
             _chargeCard = chargeCard;
@@ -48,8 +48,8 @@ namespace CheckItOut.Payments.Application.CommandHandlers
             {
                 payment.Succeed(chargeResponse.BankSimTransactionId);
                 _paymentRepository.Save().Wait();
-                //await _notifyMerchantPaymentSucceeded.Notify(command.InvoiceId, payment.PaymentId, recipient.MerchantId);
-                //await _notifyCustomerByEmailPaymentSucceeded.Notify(command.SenderEmail, command.InvoiceId, payment.PaymentId, recipient.MerchantId);
+                //ToDo: await _notifyMerchantPaymentSucceeded.Notify(command.InvoiceId, payment.PaymentId, recipient.MerchantId);
+                //ToDo: await _notifyCustomerByEmailPaymentSucceeded.Notify(command.SenderEmail, command.InvoiceId, payment.PaymentId, recipient.MerchantId);
             }
             else
             {

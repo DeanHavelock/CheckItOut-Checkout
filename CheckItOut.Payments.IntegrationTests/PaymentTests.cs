@@ -23,7 +23,7 @@ namespace CheckItOut.Payments.IntegrationTests
     {
         private CustomWebApplicationFactory<Startup> _factory;
         private HttpClient _client;
-        private Mock<IChargeCard> _chargeCard;
+        private Mock<IChargeCardAdapter> _chargeCard;
 
         private void SetupInitialTestData(IMerchantRepository merchantRepository)
         {
@@ -34,14 +34,14 @@ namespace CheckItOut.Payments.IntegrationTests
 
         public PaymentTests(CustomWebApplicationFactory<Startup> factory)
         {
-            _chargeCard = new Mock<IChargeCard>();
+            _chargeCard = new Mock<IChargeCardAdapter>();
 
             _factory = factory;
             _client = _factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureServices(services =>
                 {
-                    services.AddSingleton<IChargeCard>(_chargeCard.Object);
+                    services.AddSingleton<IChargeCardAdapter>(_chargeCard.Object);
                     var privateServiceProvider = services.BuildServiceProvider();
 
                     using (var scope = privateServiceProvider.CreateScope())

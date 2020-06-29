@@ -26,7 +26,7 @@ namespace Merchant.Infrastructure.HttpSecureSender
 
         private HttpResponseMessage PostToSecureApiWithRetries(string apiClientUrl, TokenResponse tokenResponse, object dto)
         {
-            //posts to CheckItOut idempotent payment endpoint with retries
+            //posts to apiClientUrl endpoint with jwtBearerToken and retries
             HttpClient apiClient = HttpClientFactory.Create(new RetryHandler());
             apiClient.SetBearerToken(tokenResponse.AccessToken);
             var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");

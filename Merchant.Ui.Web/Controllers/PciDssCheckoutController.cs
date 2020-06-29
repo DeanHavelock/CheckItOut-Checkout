@@ -25,11 +25,11 @@ namespace Merchant.Ui.Web.Controllers
         }
 
         //[Authorize]
-        [HttpPost, Route("Checkout")]
+        [HttpPost, Route("Checkout/Post")]
         public IActionResult Post(string invoiceId)
         {
             string userId = "2b837f52-becd-4938-8a35-0906d8c7d591"; //Get from signed in user authentication context (subjectId)
-            var paymentRequestId = _checkoutApplicationService.Checkout(invoiceId, userId);
+            var paymentRequestId = _checkoutApplicationService.PciDssCheckout(invoiceId, userId);
 
             return Redirect("https://localhost:44328/TakePayment?paymentRequestId=" + paymentRequestId);
         }
@@ -38,7 +38,7 @@ namespace Merchant.Ui.Web.Controllers
         [HttpGet, Route("CheckoutResponse")]
         public IActionResult CheckoutResponse(string invoiceId, string paymentId)
         {
-            _checkoutApplicationService.FinaliseOrder(invoiceId, paymentId);
+            _checkoutApplicationService.PciDssFinaliseOrder(invoiceId, paymentId);
             return new ContentResult() { Content = "Order Placed: " + invoiceId, StatusCode = 201 };
         }
 

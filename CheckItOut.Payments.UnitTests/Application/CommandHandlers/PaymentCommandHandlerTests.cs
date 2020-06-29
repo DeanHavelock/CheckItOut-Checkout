@@ -20,7 +20,7 @@ namespace CheckItOut.Payments.UnitTests
         {
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMercharQuery = new Mock<IQueryMerchants>();
-            var mockBankSim = new Mock<IChargeCard>();
+            var mockBankSim = new Mock<IChargeCardAdapter>();
             var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
 
             var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMercharQuery.Object, mockBankSim.Object, mockNotifyMerchantPaymentSucceeded.Object);
@@ -45,7 +45,7 @@ namespace CheckItOut.Payments.UnitTests
         [Fact]
         public async Task MakePaymentCallsChargeCardOnBankApi()
         {
-            var bankSimChargeCard = new Mock<IChargeCard>();
+            var bankSimChargeCard = new Mock<IChargeCardAdapter>();
             var mockRepo = new Mock<IPaymentRepository>();
             var merchantQueries = new Mock<IQueryMerchants>();
             var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
@@ -70,7 +70,7 @@ namespace CheckItOut.Payments.UnitTests
         [Fact]
         public async Task ShouldMapBankTransactionDetailsOnPayment()
         {
-            var mockBankSimChargeCard = new Mock<IChargeCard>();
+            var mockBankSimChargeCard = new Mock<IChargeCardAdapter>();
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMerchantQueries = new Mock<IQueryMerchants>();
             var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
@@ -95,7 +95,7 @@ namespace CheckItOut.Payments.UnitTests
         [Fact]
         public async Task ShouldChangeStatusOfPaymentToSucceeded()
         {
-            var mockBankSimChargeCard = new Mock<IChargeCard>();
+            var mockBankSimChargeCard = new Mock<IChargeCardAdapter>();
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMerchantQueries = new Mock<IQueryMerchants>();
             var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
@@ -120,7 +120,7 @@ namespace CheckItOut.Payments.UnitTests
         [Fact]
         public async Task ShouldChangeStatusOfPaymentToFailed()
         {
-            var mockBankSimChargeCard = new Mock<IChargeCard>();
+            var mockBankSimChargeCard = new Mock<IChargeCardAdapter>();
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMerchantQueries = new Mock<IQueryMerchants>();
             var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();

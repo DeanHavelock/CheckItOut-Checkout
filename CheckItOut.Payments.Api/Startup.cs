@@ -1,11 +1,13 @@
 using CheckItOut.Payments.Application.CommandHandlers;
 using CheckItOut.Payments.Application.QueryHandlers;
 using CheckItOut.Payments.Domain.BankSim;
+using CheckItOut.Payments.Domain.HttpContracts;
 using CheckItOut.Payments.Domain.Interfaces;
 using CheckItOut.Payments.Domain.Interfaces.Repository;
 using CheckItOut.Payments.Domain.MerchantContracts;
 using CheckItOut.Payments.Domain.Queries;
 using CheckItOut.Payments.Infrastructure.BankSim;
+using CheckItOut.Payments.Infrastructure.HttpSecureSender;
 using CheckItOut.Payments.Infrastructure.Merchant;
 using CheckItOut.Payments.Infrastructure.Persistence.EntityFramework;
 using CheckItOut.Payments.Infrastructure.Persistence.InMemory;
@@ -75,8 +77,9 @@ namespace CheckItOut.Payments.Api
 
 
             //external
-            services.AddTransient<IChargeCard, ChargeCard>();
+            services.AddTransient<IChargeCardAdapter, ChargeCardAdapter>();
             services.AddTransient<INotifyMerchantPaymentSucceeded, NotifyMerchantPaymentSucceeded>();
+            services.AddTransient<IPostToSecureHttpEndpointWithRetries, PostToSecureHttpEndpointWithRetries>();
 
         }
 
