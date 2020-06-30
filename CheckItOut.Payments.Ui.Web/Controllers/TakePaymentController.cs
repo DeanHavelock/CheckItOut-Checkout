@@ -24,8 +24,18 @@ namespace CheckItOut.Payments.Ui.Web.Controllers
         {
             var paymentRequest = _paymentRequestRepository.Get(paymentRequestId).Result;
             var createPaymentViewModel = new CreatePaymentViewModel() { InvoiceId= paymentRequest.InvoiceId, Amount=paymentRequest.Amount, CurrencyCode=paymentRequest.CurrencyCode, RecipientMerchantId=paymentRequest.MerchantId, PaymentRequestId=paymentRequestId };
+            AddTestData(createPaymentViewModel);
             return View(createPaymentViewModel);
 
+        }
+
+        private void AddTestData(CreatePaymentViewModel createPaymentViewModel)
+        {
+            createPaymentViewModel.SenderFullName = "dr bob smith";
+            createPaymentViewModel.SenderCardNumber = "1234123412341234";
+            createPaymentViewModel.SenderCardCvv = "123";
+            createPaymentViewModel.SenderCardExpiryMonth = "11";
+            createPaymentViewModel.SenderCardExpiryYear = "2022";
         }
 
         [HttpPost]

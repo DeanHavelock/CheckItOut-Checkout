@@ -8,7 +8,7 @@ Setup Instructions.
   2.1. CheckItOut.Payments.IntegrationTests
   2.2. CheckItOut.Payments.UnitTests
   2.3. Merchant.IntegrationTests
-3. access swagger via the /docs endpoint
+3. access swagger via the /swagger endpoint
   3.1. inspect swagger docs/endpoint for CheckItOut.Payment.Api at https://localhost:44379/swagger
 4: use the merchant UI or tests to make an order, follow the flow through. Idempotency, Client Endpoint Authorization and HTTP retries implemented.
 
@@ -23,6 +23,7 @@ Implemented Design Considerations:
  - Tye (run in docker)
 
 Future Design Considerations:
+ - IFrame should not take amount in the url, instead CheckItOut.Payment.Api should have its own basket methods protected with client authentication for merchants to use and protect against client tampering of amount at checkout.
  - Domain model is anemic, could provide better encapsulation of state.
  - Domain model could use event sourcing to track changes over time for payment auditing and bug reproducability.
  - (could combine steps 1.1 + 1.2 "dotnet db updates" to setup powershell script)

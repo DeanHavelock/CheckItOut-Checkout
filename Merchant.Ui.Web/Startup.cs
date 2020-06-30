@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Merchant.Application;
 using Merchant.Domain.HttpContracts;
 using Merchant.Domain.Interfaces;
 using Merchant.Infrastructure.HttpSecureSender;
 using Merchant.Infrastructure.Persistence.EntityFramework;
-using Merchant.Ui.Web.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,12 +36,14 @@ namespace Merchant.Ui.Web
 
             //queries
             services.AddTransient<IQueryCheckoutApplicationService, QueryCheckoutApplicationService>();
+            services.AddTransient<IQueryOrdersApplicationService, QueryOrdersApplicationService>();
 
             //repositories
             services.AddTransient<IOrderRepository, OrderRepository>();
 
             //HttpImplementations
             services.AddTransient<IPostToSecureHttpEndpointWithRetries, PostToSecureHttpEndpointWithRetries>();
+            services.AddTransient<IGetToSecureHttpEndpointWithRetries, GetToSecureHttpEndpointWithRetries>();
 
         }
 

@@ -18,7 +18,7 @@ namespace Merchant.Ui.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return RedirectToAction("Index", "Orders");
+            return RedirectToAction("Index", "Checkout");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -17,7 +17,6 @@ namespace CheckItOut.Payments.Api.Controllers
 
         public IActionResult Get(string paymentRequestId)
         {
-            var a = "";
             return Ok();
         }
 

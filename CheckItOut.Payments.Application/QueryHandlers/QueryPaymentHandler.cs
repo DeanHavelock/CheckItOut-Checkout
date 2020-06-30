@@ -29,7 +29,8 @@ namespace CheckItOut.Payments.Application.QueryHandlers
             { 
                 PaymentId = payment.PaymentId, 
                 Amount = payment.Amount,
-                MaskedCardNumber = payment.SenderCardNumber
+                MaskedCardNumber = payment.SenderCardNumber,
+                Succeeded = (payment.Status == PaymentStatus.Succeeded)
             };
         }
     }

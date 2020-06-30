@@ -1,39 +1,37 @@
 ﻿using IdentityModel.Client;
 using Merchant.Domain.HttpContracts;
-using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Security.Authentication;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace Merchant.Infrastructure.HttpSecureSender
 {
-    public class PostToSecureHttpEndpointWithRetries : IPostToSecureHttpEndpointWithRetries
+    public class GetToSecureHttpEndpointWithRetries : IGetToSecureHttpEndpointWithRetries
     {
-        public HttpResponseMessage Post(string apiClientUrl, string idServerUrl, string clientId, string secret, string tokenScope, object dto)
+        public Task<HttpResponseMessage> Get(string apiClientUrl, string idServerUrl, string clientId, string secret, string tokenScope)
         {
-            var response = PostToSecurePaymentApiWithRetries(apiClientUrl: apiClientUrl, idServerUrl: idServerUrl, clientId, secret, tokenScope, dto);
+            var response = GetToSecurePaymentApiWithRetries(apiClientUrl: apiClientUrl, idServerUrl: idServerUrl, clientId, secret, tokenScope);
 
             return response;
         }
 
-        private HttpResponseMessage PostToSecurePaymentApiWithRetries(string apiClientUrl, string idServerUrl, string clientId, string secret, string tokenScope, object dto)
+        private Task<HttpResponseMessage> GetToSecurePaymentApiWithRetries(string apiClientUrl, string idServerUrl, string clientId, string secret, string tokenScope)
         {
             var tokenResponse = RequestJWTokenFromIdServer(idServerUrl, clientId, secret, tokenScope);
-            var response = PostToSecureApiWithRetries(apiClientUrl, tokenResponse, dto);
+            var response = GetToSecureApiWithRetries(apiClientUrl, tokenResponse);
             return response;
         }
 
-        private HttpResponseMessage PostToSecureApiWithRetries(string apiClientUrl, TokenResponse tokenResponse, object dto)
+        private Task<HttpResponseMessage> GetToSecureApiWithRetries(string apiClientUrl, TokenResponse tokenResponse)
         {
-            //posts to apiClientUrl endpoint with jwtBearerToken and retries
+            //httpGet to apiClientUrl endpoint with jwtBearerToken and retries
             HttpClient apiClient = HttpClientFactory.Create(new RetryHandler());
             apiClient.SetBearerToken(tokenResponse.AccessToken);
-            var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
-            var response = apiClient.PostAsync(apiClientUrl, content).Result;
-            if (!response.IsSuccessStatusCode)
+            var response = apiClient.GetAsync(apiClientUrl);
+            if (!response.Result.IsSuccessStatusCode)
             {
-                throw new Exception(apiClientUrl + " statusCode: " + response.StatusCode.ToString());
+                throw new Exception(apiClientUrl + " statusCode: " + response.Result.StatusCode.ToString());
             }
             return response;
         }

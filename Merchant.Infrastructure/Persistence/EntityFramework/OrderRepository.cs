@@ -36,5 +36,17 @@ namespace Merchant.Infrastructure.Persistence.EntityFramework
             order.OrderItems = _webAppDbContext.OrderItems.Where(x => x.OrderId == order.OrderId).ToList();
             return order;
         }
+
+        public IEnumerable<Order> GetAllByMerchantId(string merchantId)
+        {
+            var orders = _webAppDbContext.Orders.Where(x => x.MerchantId == merchantId).ToList();
+            if (orders == null)
+                return new List<Order>();
+            foreach(var order in orders)
+            {
+                order.OrderItems = _webAppDbContext.OrderItems.Where(x => x.OrderId == order.OrderId).ToList();
+            }
+            return orders;
+        }
     }
 }

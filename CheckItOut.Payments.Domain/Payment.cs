@@ -24,7 +24,7 @@ namespace CheckItOut.Payments.Domain
             {
                 if (value.Length >= 12)
                 {
-                    var l4 = value.Substring(8, 4);
+                    var l4 = value.Substring(12, 4);
                     _cardNumber = "############" + l4;
                 }
             }

@@ -31,11 +31,4 @@ namespace Merchant.Domain.ViewModels
         public string InvoiceId { get; }
         public string OrderId { get; }
     }
-
-    public class CheckoutProductViewModel
-    {
-        public string Title { get; set; }
-        public decimal Price { get; set; }
-        public decimal Delivery { get; set; }
-    }
 }
