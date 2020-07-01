@@ -22,13 +22,13 @@ Implemented Design:
  - Dependancy Inversion Principle to reduce coupling of components and increase easability of testing with Test Doubles.
  - Test doubles for Unit Tests & Integration Tests using XUnit and Moq.
  - Persistance: Entity Framework Core with EF Migrations for Database Schema Updates.
- - CQRS (seperation of commands an queries, but in order to realise the benefits associated with this (independant scaling), these commandHandlers and QueryServices should be moved into their own projects, so they can be scaled independently).
+ - CQRS (seperation of commands an queries, but in order to realise the benefits associated with this, these commandHandlers and QueryServices should be moved into their own projects, so they can be scaled independently).
  - Oauth2.0 Client Authorization on CheckItOut.Payments.Api
  - Idempotency on Payments implemented.
  - Https + Authorised Retries Implemented.
  - Swagger endpoint documentation.
  - Create Payment Endpoint Returns link to Created Payment.
- - CI-CD Build + Test Implemented with GitHub Actions using dotnetcore.yaml (status can be seen on GitHub ReadMe (Success Badge)), could extend deployment to push docker images to dockerHub, then publish to environments dev, test, uat + live.
+ - CI-CD Build + Test Implemented with GitHub Actions using .github/workflows/dotnet-core.yml (status can be seen on GitHub ReadMe (Success Badge)), could extend deployment to push docker images to dockerHub, then publish to environments dev, test, uat + live.
  - Tye (run in docker)
 
 Future Design Considerations:
