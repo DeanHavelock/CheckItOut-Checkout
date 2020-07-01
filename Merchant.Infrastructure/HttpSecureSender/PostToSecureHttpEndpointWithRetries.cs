@@ -3,12 +3,11 @@ using Merchant.Domain.HttpContracts;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
-using System.Security.Authentication;
 using System.Text;
 
 namespace Merchant.Infrastructure.HttpSecureSender
 {
-    public class PostToSecureHttpEndpointWithRetries : IPostToSecureHttpEndpointWithRetries
+    public class PostToSecureHttpEndpointWithRetries : CallToSecureHttpEndpointWithRetriesBase, IPostToSecureHttpEndpointWithRetries
     {
         public HttpResponseMessage Post(string apiClientUrl, string idServerUrl, string clientId, string secret, string tokenScope, object dto)
         {
@@ -36,35 +35,6 @@ namespace Merchant.Infrastructure.HttpSecureSender
                 throw new Exception(apiClientUrl + " statusCode: " + response.StatusCode.ToString());
             }
             return response;
-        }
-
-        private TokenResponse RequestJWTokenFromIdServer(string idServerUrl, string clientId, string secret, string tokenScope)
-        {
-            // discover endpoints from metadata
-            var client = new HttpClient();
-            var disco = client.GetDiscoveryDocumentAsync(idServerUrl).Result;
-            if (disco.IsError)
-            {
-                throw new AuthenticationException(disco.Error);
-            }
-
-            // request token
-            var tokenResponse = client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
-            {
-                Address = disco.TokenEndpoint,
-
-                ClientId = clientId,
-                ClientSecret = secret,
-                Scope = tokenScope
-            }).Result;
-
-            if (tokenResponse.IsError)
-            {
-                throw new AuthenticationException(tokenResponse.Error);
-            }
-
-            return tokenResponse;
-
         }
 
     }

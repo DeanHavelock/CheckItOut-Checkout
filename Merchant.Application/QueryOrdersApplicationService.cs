@@ -22,8 +22,6 @@ namespace Merchant.Application
 
         public async Task<MerchantOrdersViewModel> GetMerchantOrdersAsync(string merchantId) 
         {
-            
-            
             var orders = _orderRepository.GetAllByMerchantId(merchantId);
             if (orders == null)
                 return new MerchantOrdersViewModel() { MerchantId = merchantId };
