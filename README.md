@@ -1,4 +1,4 @@
-CheckItOut CI-CD BUILD STATUS: ![.NET Core](https://github.com/DeanHavelock/CheckItOut/workflows/.NET%20Core/badge.svg)
+CI-CD BUILD STATUS: ![.NET Core](https://github.com/DeanHavelock/CheckItOut/workflows/.NET%20Core/badge.svg)
 
 Setup Instructions.
 1. Setup local database on Dev Machine: using cmd execute "dotnet ef database update" at the following folder locations
