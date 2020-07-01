@@ -27,7 +27,7 @@ namespace CheckItOut.Payments.IntegrationTests
 
         private void SetupInitialTestData(IMerchantRepository merchantRepository)
         {
-            var newMerchant = new Merchant() { MerchantId = "TEST", FullName = "bob", AccountNumber = "1111111111111111", SortCode = "111111" };
+            var newMerchant = new Merchant() { MerchantId = "TEST", FullName = "bob", AccountNumber = "1111111111111111", SortCode = "111111", CardNumber= "1234123412341234", Csv="234" };
             merchantRepository.Add(newMerchant).Wait();
             merchantRepository.Save().Wait();
         }
@@ -48,7 +48,7 @@ namespace CheckItOut.Payments.IntegrationTests
                     {
                         var scopedServices = scope.ServiceProvider;
                         var merchantRepository = scopedServices.GetRequiredService<IMerchantRepository>();
-                        var merchant = merchantRepository.GetById("Test").Result;
+                        var merchant = merchantRepository.GetById("TEST").Result;
                         if (merchant == null)
                         {
                             SetupInitialTestData(merchantRepository);
@@ -79,7 +79,7 @@ namespace CheckItOut.Payments.IntegrationTests
                 CurrencyCode = "GBP",
                 SenderCardNumber = "4141414141414141",
                 SenderCvv = "111",
-                RecipientMerchantId = "TEST",
+                RecipientMerchantId = "PAYMENTTEST",
                 InvoiceId = Guid.NewGuid().ToString()
             };
 

@@ -19,6 +19,7 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.EntityFramework
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<CheckItOut.Payments.Domain.Payment>().HasKey(e => e.PaymentId);
+            modelBuilder.Entity<Domain.Merchant>().HasData(new Domain.Merchant { MerchantId="TEST", FullName="bob", AccountNumber = "1111111111111111", SortCode = "111111", CardNumber= "1234123412341234", Csv="234" });
         }
     }
 

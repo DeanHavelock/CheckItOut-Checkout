@@ -1,0 +1,32 @@
+﻿@model Merchant.Domain.ViewModels.CheckoutOrderPlacedViewModel
+
+@{
+    ViewData["Title"] = "CheckoutResponse";
+}
+
+<h1>Checkout Complete</h1>
+
+<div>
+    <h4>Order Placed</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InvoiceId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InvoiceId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PaymentId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PaymentId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MerchantUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            See Merchant Orders (FOR TEST): <a>@Html.DisplayFor(model => model.MerchantUrl)</a>
+        </dd>
+    </dl>
+</div>

@@ -41,6 +41,17 @@ namespace CheckItOut.Payments.Infrastructure.Migrations
                     b.HasKey("MerchantId");
 
                     b.ToTable("Merchants");
+
+                    b.HasData(
+                        new
+                        {
+                            MerchantId = "TEST",
+                            AccountNumber = "1111111111111111",
+                            CardNumber = "1234123412341234",
+                            Csv = "234",
+                            FullName = "bob",
+                            SortCode = "111111"
+                        });
                 });
 
             modelBuilder.Entity("CheckItOut.Payments.Domain.Payment", b =>

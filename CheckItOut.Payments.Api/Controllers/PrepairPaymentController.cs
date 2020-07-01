@@ -15,6 +15,7 @@ namespace CheckItOut.Payments.Api.Controllers
             _prepairPaymentCommandHandler = prepairPaymentCommandHandler;
         }
 
+        [HttpGet]
         public IActionResult Get(string paymentRequestId)
         {
             return Ok();

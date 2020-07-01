@@ -19,6 +19,8 @@ namespace CheckItOut.Payments.Application.QueryHandlers
         public async Task<GetPaymentResponse> Query(GetPayment query)
         {
             var payment = await _paymentRepository.GetById(query.PaymentId);
+            if (payment == null)
+                payment = new Payment() { PaymentId = "0", InvoiceId="0" };
             var paymentQueryResponse = MapResponseFromEntity(payment);
             return paymentQueryResponse;
         }

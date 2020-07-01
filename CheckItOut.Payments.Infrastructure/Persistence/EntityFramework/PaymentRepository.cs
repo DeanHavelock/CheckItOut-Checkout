@@ -24,12 +24,18 @@ namespace CheckItOut.Payments.Infrastructure.Persistence.InMemory
 
         public async Task<Payment> GetById(string paymentId)
         {
-            return await _context.Payments.FindAsync(paymentId);
+            var payment = await _context.Payments.FindAsync(paymentId);
+            if (payment == null)
+                return new Payment();
+            return payment;
         }
 
         public async Task<Payment> GetByInvoiceId(string invoiceId)
         {
-            return await _context.Payments.FirstOrDefaultAsync(x => x.InvoiceId == invoiceId);
+            var payment = await _context.Payments.FirstOrDefaultAsync(x => x.InvoiceId == invoiceId);
+            if (payment == null)
+                return new Payment();
+            return payment;
         }
 
         public async Task Save()

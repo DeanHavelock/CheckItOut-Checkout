@@ -1,9 +1,10 @@
 ﻿using Merchant.Domain.Interfaces;
+using Merchant.Domain.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Merchant.Ui.Web.Controllers
 {
-    public class PciDssCheckoutController : Controller
+    public partial class PciDssCheckoutController : Controller
     {
         private IQueryCheckoutApplicationService _queryCheckoutApplicationService;
         private ICheckoutApplicationService _checkoutApplicationService;
@@ -39,7 +40,7 @@ namespace Merchant.Ui.Web.Controllers
         public IActionResult CheckoutResponse(string invoiceId, string paymentId)
         {
             _checkoutApplicationService.PciDssFinaliseOrder(invoiceId, paymentId);
-            return new ContentResult() { Content = "Order Placed: " + invoiceId, StatusCode = 201 };
+            return View(new CheckoutOrderPlacedViewModel() { InvoiceId = invoiceId, PaymentId = paymentId, MerchantUrl = "https://localhost:44388/merchant" });
         }
 
     }

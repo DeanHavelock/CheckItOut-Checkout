@@ -30,7 +30,7 @@ namespace Merchant.Application
 
             var merchantOrders = MapFrom(merchantId, orders);
 
-            //Get live payment confirmation from payment server (this is not needed, but is an example given the spec (allow merchant to retrieve paymentStatus and maskedCardNumber given an invoiceId), also if we did need to do this we would create a bulk request accepting many Id's to reduce Http round trips):
+            //Get live payment paid verification (this is not needed, but is an example given the spec (allow merchant to retrieve paymentStatus and maskedCardNumber given an invoiceId), also if we did need to do this we would create a bulk request accepting many Id's to reduce Http round trips, this has been made async to speed up response times):
             List<Task> listOfTasks = new List<Task>();
             foreach (var merchantOrder in merchantOrders.MerchantOrders)
             {
@@ -64,7 +64,7 @@ namespace Merchant.Application
                     OrderStatus = order.Status.ToString(),
                     Amount = order.TotalAmount,
                     CurrencyCode = order.CurrencyCode,
-                    PaymentId = order.PaymentId,
+                    PaymentId = order.PaymentId??"0",
                 };
 
                 foreach (var orderItem in order.OrderItems)
