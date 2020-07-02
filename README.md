@@ -29,7 +29,6 @@ Implemented Design:
  - Swagger endpoint documentation.
  - Create Payment Endpoint Returns link to Created Payment.
  - CI-CD Build + Test Implemented with GitHub Actions using .github/workflows/dotnet-core.yml (status can be seen on GitHub ReadMe (Success Badge)), could extend deployment to push docker images to dockerHub, then publish to environments dev, test, uat + live.
- - Tye (run in docker)
 
 Future Design Considerations:
  - Domain models are anemic, should provide better encapsulation of state and validation (constructor / named static constructor methods (opportunity for immutability)+ state transformation methods(encapsulation)).
@@ -37,5 +36,6 @@ Future Design Considerations:
  - Could combine steps 1.1 + 1.2 "dotnet db updates" to setup powershell script
  - Hard coded url's should come from appsettings to allow for json config transformations (appsettings) for dev, test and live environment variables.
  - Could use an IFrame within Merchant.Ui for the CheckItOut.Payment and webhooks with signalR for payment updates back to Merchant.Api and Merchant.Web.Ui for user interface update.
- - Pci-Dss, the release version should upgrade security implementation to 3DS2 for full PCI DSS complaince, there is some security in place but it's possible there could be more requirements like database.
+ - Pci-Dss, the release version should upgrade security implementation to 3DS2 for full PCI DSS complaince, there is some security in place but it's possible there could be more requirements like database secure data encryption.
  - Could use IdentityServer4 for full Oauth2.0 flows, including Identity user login on MerchantUi for Authentication and Authorisation for example on the merchant orders page (have implemented this on a previous project which was released and used in live).
+ - Tye (run in docker), update localhost urls to tye urls.
