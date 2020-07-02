@@ -38,4 +38,5 @@ Future Design Considerations:
  - Could use an IFrame within Merchant.Ui for the CheckItOut.Payment and webhooks with signalR for payment updates back to Merchant.Api and Merchant.Web.Ui for user interface update.
  - Pci-Dss, the release version should upgrade security implementation to 3DS2 for full PCI DSS complaince, there is some security in place but it's possible there could be more requirements like database secure data encryption.
  - Could use IdentityServer4 for full Oauth2.0 flows, including Identity user login on MerchantUi for Authentication and Authorisation for example on the merchant orders page (have implemented this on a previous project which was released and used in live).
+ - Should add more integration and unit tests around business rules with valid and non valid cases (put domain logic into entity methods and domain services, tests ensure existing functionality).
  - Tye (run in docker), update localhost urls to tye urls.
