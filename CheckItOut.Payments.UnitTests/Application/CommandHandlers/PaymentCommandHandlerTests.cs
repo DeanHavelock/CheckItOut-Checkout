@@ -16,7 +16,7 @@ namespace CheckItOut.Payments.UnitTests
     public class PaymentCommandHandlerTests
     {
         [Fact]
-        public async Task ShouldSetFieldsFromCommandToEntity()
+        public async Task ShouldSetFieldsAndMaskedCardNumberFromCommandToEntity()
         {
             var mockRepo = new Mock<IPaymentRepository>();
             var mockMercharQuery = new Mock<IQueryMerchants>();
@@ -24,10 +24,9 @@ namespace CheckItOut.Payments.UnitTests
             var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
 
             var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMercharQuery.Object, mockBankSim.Object, mockNotifyMerchantPaymentSucceeded.Object);
-
+            string maskedCardNumber = "############4141";
             var paymentCommand = new Domain.Commands.MakePaymentCommand()
             {
-                PaymentId = Guid.NewGuid().ToString(),
                 InvoiceId = Guid.NewGuid().ToString(),
                 RecipientMerchantId = Guid.NewGuid().ToString(),
                 SenderCardNumber = "4141414141414141",
@@ -35,11 +34,11 @@ namespace CheckItOut.Payments.UnitTests
                 Amount = 1000
             };
 
-            mockMercharQuery.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(new Merchant { });
+            mockMercharQuery.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(new Merchant { MerchantId=paymentCommand.RecipientMerchantId });
             mockBankSim.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(new FinaliseTransactionResponse { Success = true, BankSimTransactionId = Guid.NewGuid().ToString() });
 
             await commandHander.Handle(paymentCommand);
-            mockRepo.Verify(x => x.Add(It.Is<Payment>(p => p.Amount == paymentCommand.Amount)));
+            mockRepo.Verify(x => x.Add(It.Is<Payment>(p => p.Amount == paymentCommand.Amount && p.InvoiceId == paymentCommand.InvoiceId && p.RecipientMerchantId == paymentCommand.RecipientMerchantId && p.SenderCardNumber == maskedCardNumber)));
         }
 
         [Fact]
@@ -53,10 +52,10 @@ namespace CheckItOut.Payments.UnitTests
             var merchant = new Merchant { AccountNumber = "888888" };
 
             merchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
-                
+
             var commandHander = new PaymentsCommandHandler(mockRepo.Object, merchantQueries.Object, bankSimChargeCard.Object, mockNotifyMerchantPaymentSucceeded.Object);
 
-            var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv="111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
+            var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv = "111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
 
             bankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(new FinaliseTransactionResponse());
 
@@ -64,7 +63,7 @@ namespace CheckItOut.Payments.UnitTests
 
             bankSimChargeCard.Verify(x => x.Charge(It.Is<FinaliseTransactionRequest>(request =>
                 request.RecipientAccountNumber == merchant.AccountNumber
-                && request.SenderCardNumber == command.SenderCardNumber)));       
+                && request.SenderCardNumber == command.SenderCardNumber)));
         }
 
         [Fact]
@@ -76,7 +75,7 @@ namespace CheckItOut.Payments.UnitTests
             var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
 
             var merchant = new Merchant { AccountNumber = "888888" };
-            var chargeResponse = new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString(), Success=true };
+            var chargeResponse = new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString(), Success = true };
 
             mockMerchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
             mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(chargeResponse);
@@ -91,66 +90,7 @@ namespace CheckItOut.Payments.UnitTests
 
             mockRepo.Verify(x => x.Add(It.Is<Payment>(payment => payment.BankSimTransactionId == chargeResponse.BankSimTransactionId)));
         }
-
-        [Fact]
-        public async Task ShouldChangeStatusOfPaymentToSucceeded()
-        {
-            var mockBankSimChargeCard = new Mock<IChargeCardAdapter>();
-            var mockRepo = new Mock<IPaymentRepository>();
-            var mockMerchantQueries = new Mock<IQueryMerchants>();
-            var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
-
-            var merchant = new Merchant { AccountNumber = "888888" };
-            var chargeResponse = new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString() };
-
-            mockMerchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
-            mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(chargeResponse);
-
-            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object, mockNotifyMerchantPaymentSucceeded.Object);
-
-            var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv = "111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
-
-            mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(new FinaliseTransactionResponse());
-
-            await commandHander.Handle(command);
-
-            Assert.True(false);
-        }
-
-        [Fact]
-        public async Task ShouldChangeStatusOfPaymentToFailed()
-        {
-            var mockBankSimChargeCard = new Mock<IChargeCardAdapter>();
-            var mockRepo = new Mock<IPaymentRepository>();
-            var mockMerchantQueries = new Mock<IQueryMerchants>();
-            var mockNotifyMerchantPaymentSucceeded = new Mock<INotifyMerchantPaymentSucceeded>();
-
-            var merchant = new Merchant { AccountNumber = "888888" };
-            var chargeResponse = new FinaliseTransactionResponse { BankSimTransactionId = Guid.NewGuid().ToString() };
-
-            mockMerchantQueries.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(merchant);
-            mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(chargeResponse);
-
-            var commandHander = new PaymentsCommandHandler(mockRepo.Object, mockMerchantQueries.Object, mockBankSimChargeCard.Object, mockNotifyMerchantPaymentSucceeded.Object);
-
-            var command = new MakePaymentCommand { InvoiceId = Guid.NewGuid().ToString(), RecipientMerchantId = Guid.NewGuid().ToString(), SenderCardNumber = "4444444444444444", SenderCvv = "111", PaymentId = Guid.NewGuid().ToString(), Amount = 100 };
-
-            mockBankSimChargeCard.Setup(x => x.Charge(It.IsAny<FinaliseTransactionRequest>())).ReturnsAsync(new FinaliseTransactionResponse());
-
-            await commandHander.Handle(command);
-
-            Assert.True(false);
-        }
-
-        private bool CheckCommandMappedToPayment(Payment payment, Domain.Commands.MakePaymentCommand paymentCommand)
-        {
-            if(payment.Amount == paymentCommand.Amount
-                /*&& payment.SenderCardNumber == paymentCommand.SenderCardNumber*/
-                && payment.PaymentId == paymentCommand.PaymentId
-                && payment.RecipientMerchantId == paymentCommand.RecipientMerchantId)
-            { return true; }
-            return false;
-        }
     }
+
 
 }
