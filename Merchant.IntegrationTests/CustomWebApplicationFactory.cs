@@ -24,22 +24,6 @@ namespace Merchant.IntegrationTests
                 //services.AddTransient<IPostToSecureHttpEndpointWithRetries, MockPostToSecureHttpEndpointWithRetries>();
                 var provider = services.BuildServiceProvider();
                 var scope = provider.CreateScope();
-                //var merchantRepository = scope.ServiceProvider.GetRequiredService<IMerchantRepository>();
-                //
-                //var merchant = merchantRepository.GetById("Test").Result;
-                //if (merchant == null)
-                //{
-                //    SetupInitialTestData(merchantRepository);
-                //}
-                //var serviceProvider = new ServiceCollection()
-                //    .AddEntityFrameworkInMemoryDatabase()
-                //    .BuildServiceProvider();
-                //
-                //services.AddDbContext<ApplicationDBContext>(options =>
-                //{
-                //    options.UseInMemoryDatabase("DBInMemoryTest");
-                //    options.UseInternalServiceProvider(serviceProvider);
-                //});
             });
         
         }

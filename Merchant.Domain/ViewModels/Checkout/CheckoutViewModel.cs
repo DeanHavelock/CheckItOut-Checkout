@@ -22,13 +22,13 @@ namespace Merchant.Domain.ViewModels
         }
 
         public IEnumerable<CheckoutProductViewModel> CheckoutProductViewModels;
-        public string SellerName { get; }
-        public string SellerMerchantId { get; }
+        public string SellerName { get; set; }
+        public string SellerMerchantId { get; set; }
         public decimal TotalCost => CheckoutProductViewModels.Sum(x => x.Price + x.Delivery);
-        public string CurrencyCode { get; }
+        public string CurrencyCode { get; set; }
 
-        public string UserId { get; }
-        public string InvoiceId { get; }
-        public string OrderId { get; }
+        public string UserId { get; set; }
+        public string InvoiceId { get; set; }
+        public string OrderId { get; set; }
     }
 }

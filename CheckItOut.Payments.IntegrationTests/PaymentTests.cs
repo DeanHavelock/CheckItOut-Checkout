@@ -100,11 +100,11 @@ namespace CheckItOut.Payments.IntegrationTests
             Assert.Equal(makePaymentRequest.Amount, deserializedGetPaymentResponse.Amount);
         }
 
-        [Fact]
-        public async Task FailedPaymentRequest() 
-        { 
-
-        }
+        //[Fact]
+        //public async Task FailedPaymentRequest() 
+        //{ 
+        //
+        //}
             
      }
 }

@@ -33,6 +33,8 @@ namespace Merchant.Infrastructure.Persistence.EntityFramework
         public Order GetByInvoiceId(string invoiceId)
         {
             var order = _webAppDbContext.Orders.FirstOrDefault(x => x.InvoiceId == invoiceId);
+            if (order == null)
+                return new Order();
             order.OrderItems = _webAppDbContext.OrderItems.Where(x => x.OrderId == order.OrderId).ToList();
             return order;
         }

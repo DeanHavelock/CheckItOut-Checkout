@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Merchant.Ui.Web.Controllers
 {
+    //[Route("Payment")]
     public class NoPciDssCheckoutController : Controller
     {
         private IQueryCheckoutApplicationService _queryCheckoutApplicationService;
@@ -25,10 +26,9 @@ namespace Merchant.Ui.Web.Controllers
         }
 
         //[Authorize]
-        [HttpPost, Route("Payment")]
-        public IActionResult CheckoutUsingCardDetailsAndBasketFromMerchantSite()
+        [HttpPost, Route("Payment/Post")]
+        public IActionResult CheckoutUsingCardDetailsAndBasketFromMerchantSite(string invoiceId)
         {
-            string invoiceId = Guid.NewGuid().ToString();//set from UI
             string subjectId = "2b837f52-becd-4938-8a35-0906d8c7d591"; //Get from signed in user authentication context (subject)
             string senderCardNumber = "1234123412341234";
             string senderCvv = "111";
@@ -38,7 +38,7 @@ namespace Merchant.Ui.Web.Controllers
             return RedirectToAction("OrderSubmitted", new { orderId });
         }
 
-        [HttpPost, Route("Payment")]
+        [HttpPost, Route("PaymentOrderSubmitted")]
         public IActionResult OrderSubmitted(string orderId)
         {
             return new ContentResult() { Content = "Order Submitted - " + orderId, StatusCode = 201 };
